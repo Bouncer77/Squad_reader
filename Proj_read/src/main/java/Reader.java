@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public class Reader {
     private ArrayList <Squad> arSQ = new ArrayList<Squad>();  //Список всех отделов
-    private LinkedList<String[]> ar = new LinkedList<String[]>(); //Данные отдела (ФИО/ЗП)
+    private ArrayList<Rabotnik> ar = new ArrayList<Rabotnik>(); //Данные отдела (ФИО/ЗП)
     private String sqName = null; // Название текущего отдела
     private Squad squad = null;  //текущий отдел
 
@@ -41,9 +41,13 @@ public class Reader {
             }
             else {
                 String mas[] = new String[2];
-                mas = line.split("/");   //Запись в "отдел" имя/доход
+                mas = line.split("/");   // имя/доход
 
-                ar.add(mas);
+                Rabotnik rab = new Rabotnik();   //Создаем нового работника
+                rab.setName(mas[0]);             //Записываем имя
+                rab.setZp(Integer.parseInt(mas[1])); //записываем доход. !!!!!!!!!ДОБАВИТЬ ОБРАБОТЧИК!!!!!!!!!
+
+                ar.add(rab);
             }
             System.out.println(line);    //вывод что прочитали
             line = brd.readLine();
@@ -51,7 +55,7 @@ public class Reader {
 
         if(squad!=null)  //Когда прочтение заканчивается и финальная строка null - записываем уже поулченные данные, чтобы не потерять и завершаем программу
             remember_squad();
-
+        //ar.clear();
         return arSQ;
     }
 
