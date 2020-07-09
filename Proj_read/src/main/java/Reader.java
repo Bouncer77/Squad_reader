@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Reader {
-   private ArrayList <Squad> arSQ = new ArrayList<Squad>();  //Список всех отделов
-   private LinkedList<String[]> ar = new LinkedList<String[]>(); //Данные отдела
-   private String sqName = null; // Название текущего отдела
-   private Squad squad = null;  //текущий отдел
+    private ArrayList <Squad> arSQ = new ArrayList<Squad>();  //Список всех отделов
+    private LinkedList<String[]> ar = new LinkedList<String[]>(); //Данные отдела (ФИО/ЗП)
+    private String sqName = null; // Название текущего отдела
+    private Squad squad = null;  //текущий отдел
 
 
     private void remember_squad()  //Запись отдела. Этот код дважды повторяется (По ходу выполнения чтения и один в конце), т.ч вынес в отдельный метод
@@ -22,7 +22,7 @@ public class Reader {
         BufferedReader brd;
         String line; //Считываемая строка
 
-        rd = new FileReader("C:\\Users\\maxim\\IdeaProjects\\Squad_reader\\Poject_read\\src\\main\\resources\\squads.txt");
+        rd = new FileReader("C:\\Users\\maxim\\IdeaProjects\\Squad_reader\\Proj_read\\src\\main\\resources\\squads.txt");
         brd = new BufferedReader(rd);
         line = brd.readLine();
 
@@ -31,7 +31,7 @@ public class Reader {
             if(sqName==null || !line.contains("/"))   //Запись наименования отряда
             {
                 if(squad!=null)  //Если отдел уже был и мы начинаем смотреть новый, то уже созданные записи записываем и уже тогда переходим к новому.
-                     remember_squad();
+                    remember_squad();
 
                 sqName=line;
                 squad = new Squad(); //Создание нового отдела
@@ -46,11 +46,11 @@ public class Reader {
                 ar.add(mas);
             }
             System.out.println(line);    //вывод что прочитали
-             line = brd.readLine();
+            line = brd.readLine();
         }
 
-            if(squad!=null)  //Когда прочтение заканчивается и финальная строка null - записываем уже поулченные данные, чтобы не потерять и завершаем программу
-                remember_squad();
+        if(squad!=null)  //Когда прочтение заканчивается и финальная строка null - записываем уже поулченные данные, чтобы не потерять и завершаем программу
+            remember_squad();
 
         return arSQ;
     }

@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class main {
+public class Main {
 
     public static void main(String[] args) throws IOException {
         Reader reader = new Reader();

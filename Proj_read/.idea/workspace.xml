@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cb8ed95-aef0-49cd-81a5-38b25f0f81a0" name="Default Changelist" comment="" />
+    <list default="true" id="ed8fc5f7-c1ba-4f0c-888d-91bd57a264ec" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,10 +25,9 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectId" id="1eRcbu3bmyhIdmPjswwCE7EvzTM" />
+  <component name="ProjectId" id="1eRrbnzzuJJGBv6icjXnQRwtRAp" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="ignore.virus.scanning.warn.message" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
@@ -44,16 +43,18 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main" />
-      <module name="Poject_read" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Proj_read" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -62,11 +63,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3cb8ed95-aef0-49cd-81a5-38b25f0f81a0" name="Default Changelist" comment="" />
-      <created>1594287920498</created>
+      <changelist id="ed8fc5f7-c1ba-4f0c-888d-91bd57a264ec" name="Default Changelist" comment="" />
+      <created>1594295320573</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1594287920498</updated>
+      <updated>1594295320573</updated>
     </task>
     <servers />
   </component>
