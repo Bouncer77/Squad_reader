@@ -1,0 +1,7 @@
+OTDEL A
+arf/100
+add/50
+OTDEL B
+afsdf/666
+asdsadas/124
+asd/222
