@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class FileReader {
     private ArrayList <Squad> arSQ = new ArrayList<Squad>();  //Список всех отделов
-    private String sqName = null; // Название текущего отдела
     private Squad squad = null;  //текущий отдел
 
 
@@ -25,7 +24,7 @@ public class FileReader {
 
         while (line != null){ //Пока строка есть - читаем
 
-                String mas[] = new String[3];
+                String mas[];
                 mas = line.split("/");   // имя/доход/отдел
 
                 Employee rab = new Employee();   //Создаем нового работника

@@ -1,7 +1,11 @@
-NotSure /100/Tech
+NotSure /300/Tech
+NotYes /305/Tech
 Ivan /500/Tech
 Francisc II /333/Already
 Maxim /777/Tech
 Albert /222/Already
 VVV /232/Tech
 AAAA /332/Already
+bbb /222/Baby
+ccc /123/Baby
+dddd /232/Baby

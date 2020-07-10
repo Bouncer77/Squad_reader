@@ -7,6 +7,9 @@ public class Squad {
     private List<Employee> ar = new ArrayList<Employee>(); //Данные отдела (ФИО/ЗП)
     private String name = null; //Название отдела
 
+    public List<Employee> getAr() {
+        return ar;
+    }
 
     public void setAr(ArrayList<Employee> as) {  //Пока добавил только сеттеры для выполнения первичной задачи
         ar.addAll(0,as);
@@ -37,5 +40,30 @@ public class Squad {
         }
         System.out.println("Average salary: ");
         System.out.printf("%.2f",  salary/ar.size());    //Средняя зп
+    }
+
+    public double testAvarageSalary()  //Подсчет примерной зп. Точность здесь не влияет.
+    {
+        double salary = 0;
+        for(int i=0; i<ar.size();i++)
+        {
+            salary+=ar.get(i).getSalary();
+        }
+        return salary/ar.size();
+        //return String.format("%.2f",  salary/ar.size());
+    }
+
+    public double testAvarageSalary2(double sal)  //Подсчет примерной зп. Точность здесь не влияет.
+    {
+        double salary = 0;
+        for(int i=0; i<ar.size();i++)
+        {
+            salary+=ar.get(i).getSalary();
+        }
+        if(sal>0)
+        return (salary-sal)/(ar.size()-1);
+        else
+        {return (salary-sal)/(ar.size()+1);}
+        //return String.format("%.2f",  salary/ar.size());
     }
 }
