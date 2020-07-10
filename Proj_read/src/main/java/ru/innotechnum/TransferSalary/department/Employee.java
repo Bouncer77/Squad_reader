@@ -2,11 +2,11 @@ package ru.innotechnum.TransferSalary.department;
 
 public class Employee {
     private String name;
-    private int zp;
+    private int salary;
 
-    public int getZp() {
-        return zp;
-    }
+    public int getSalary() { return salary; }
+
+    public void setSalary(int salary) { this.salary = salary; }
 
     public String getName() {
         return name;
@@ -16,7 +16,5 @@ public class Employee {
         this.name = name;
     }
 
-    public void setZp(int zp) {
-        this.zp = zp;
-    }
+
 }

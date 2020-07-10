@@ -1,7 +1,7 @@
-OTDEL "A"
-NotSure/100
-Ivan/500
-OTDEL "B"
-Francisc II/333
-Maxim/777
-Albert/222
+NotSure /100/Tech
+Ivan /500/Tech
+Francisc II /333/Already
+Maxim /777/Tech
+Albert /222/Already
+VVV /232/Tech
+AAAA /332/Already

@@ -49,7 +49,7 @@ public class Reader {
 
                 Employee rab = new Employee();   //Создаем нового работника
                 rab.setName(mas[0]);             //Записываем имя
-                rab.setZp(Integer.parseInt(mas[1])); //записываем доход. !!!!!!!!!ДОБАВИТЬ ОБРАБОТЧИК!!!!!!!!!
+                rab.setSalary(Integer.parseInt(mas[1])); //записываем доход. !!!!!!!!!ДОБАВИТЬ ОБРАБОТЧИК!!!!!!!!!
 
                 ar.add(rab);
             }
