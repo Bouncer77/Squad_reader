@@ -1,12 +1,11 @@
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Squad {
-    private ArrayList<Rabotnik> ar = new ArrayList<Rabotnik>(); //Данные отдела (ФИО/ЗП)
+    private ArrayList<Employee> ar = new ArrayList<Employee>(); //Данные отдела (ФИО/ЗП)
     private String name = null; //Название отдела
 
 
-    public void setAr(ArrayList<Rabotnik> as) {  //Пока добавил только сеттеры для выполнения первичной задачи
+    public void setAr(ArrayList<Employee> as) {  //Пока добавил только сеттеры для выполнения первичной задачи
         ar.addAll(0,as);
     }
 

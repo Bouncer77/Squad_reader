@@ -2,11 +2,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Reader {
     private ArrayList <Squad> arSQ = new ArrayList<Squad>();  //Список всех отделов
-    private ArrayList<Rabotnik> ar = new ArrayList<Rabotnik>(); //Данные отдела (ФИО/ЗП)
+    private ArrayList<Employee> ar = new ArrayList<Employee>(); //Данные отдела (ФИО/ЗП)
     private String sqName = null; // Название текущего отдела
     private Squad squad = null;  //текущий отдел
 
@@ -43,7 +42,7 @@ public class Reader {
                 String mas[] = new String[2];
                 mas = line.split("/");   // имя/доход
 
-                Rabotnik rab = new Rabotnik();   //Создаем нового работника
+                Employee rab = new Employee();   //Создаем нового работника
                 rab.setName(mas[0]);             //Записываем имя
                 rab.setZp(Integer.parseInt(mas[1])); //записываем доход. !!!!!!!!!ДОБАВИТЬ ОБРАБОТЧИК!!!!!!!!!
 
