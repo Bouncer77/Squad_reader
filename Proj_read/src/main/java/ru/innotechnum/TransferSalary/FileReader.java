@@ -1,10 +1,12 @@
 package ru.innotechnum.TransferSalary;
 
+import com.sun.deploy.security.SelectableSecurityManager;
 import ru.innotechnum.TransferSalary.department.Employee;
 import ru.innotechnum.TransferSalary.department.Squad;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class FileReader {
@@ -21,15 +23,25 @@ public class FileReader {
         rd = new java.io.FileReader("C:\\Users\\maxim\\IdeaProjects\\Squad_reader\\Proj_read\\src\\main\\resources\\squads.txt");
         brd = new BufferedReader(rd);
         line = brd.readLine();
+        int numberLine=0; //Счетчик прочитанных строк
 
         while (line != null){ //Пока строка есть - читаем
+
+                numberLine++; //Считаем строки для обозначения ошибочной строки.
 
                 String mas[];
                 mas = line.split("/");   // имя/доход/отдел
 
-                Employee rab = new Employee();   //Создаем нового работника
-                rab.setName(mas[0]);             //Записываем имя
-                rab.setSalary(mas[1]); //записываем доход. !!!!!!!!!ДОБАВИТЬ ОБРАБОТЧИК!!!!!!!!!
+                if(mas.length==3)
+                {
+                try {
+                    Employee rab = new Employee();   //Создаем нового работника
+                    rab.setName(mas[0]);             //Записываем имя
+                    BigDecimal sal = new BigDecimal(mas[1]);
+                    rab.setSalary(sal); //записываем доход.
+
+
+
 
                 boolean find = false;
                 for(int i= 0; i<arSQ.size();i++)  //перебираем список всех отделов
@@ -49,6 +61,17 @@ public class FileReader {
                 squad.addEmpl(rab);
                 arSQ.add(squad);
             }
+                }
+                catch (java.lang.NumberFormatException ex)
+                {
+                    System.out.println("ERROR AT LINE: " + numberLine);
+                  //  line = brd.readLine();  //В случае ошибки переходим к след строке
+                   // break A;
+                }
+                }else
+                {
+                    System.out.println("ERROR AT LINE TMS: " + numberLine);
+                }
 
             System.out.println(line);    //вывод что прочитали
             line = brd.readLine();

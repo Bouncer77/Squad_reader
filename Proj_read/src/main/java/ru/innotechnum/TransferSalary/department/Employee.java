@@ -8,7 +8,7 @@ public class Employee {
 
     public BigDecimal getSalary() { return salary; }
 
-    public void setSalary(String salary) { this.salary=new BigDecimal(salary); }
+    public void setSalary(BigDecimal salary) { this.salary=salary; }
 
     public String getName() {
         return name;

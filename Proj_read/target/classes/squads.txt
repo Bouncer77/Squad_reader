@@ -1,7 +1,8 @@
-NotSure /300/Tech
-NotYes /305/Tech
+NotSure/300/Tech
+/23/d
+NotYes/305/Tech
 Ivan /500/Tech
-Francisc II /333/Already
+Francisc II /33ф3/Already
 Maxim /777/Tech
 Albert /222/Already
 VVV /232/Tech
