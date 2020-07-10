@@ -68,7 +68,7 @@ public class Squad {
         {
             salary=salary.divide(new BigDecimal(ar.size()-1),6,3);
         }
-        else
+        if(sal.compareTo(BigDecimal.ZERO)==-1)
         {
             salary=salary.divide(new BigDecimal(ar.size()+1),6,3);
         }

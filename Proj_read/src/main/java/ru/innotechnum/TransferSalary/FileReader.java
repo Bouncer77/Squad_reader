@@ -33,7 +33,7 @@ public class FileReader {
                 mas = line.split("/");   // имя/доход/отдел
 
 
-                try {
+                try {  //Траем я захватываю довольно внушительный участок кода, чтобы пропустить весь участок в случае ошибки и начать след. проход.
                     if(mas.length!=3) throw new Exception ("MasNot3");
 
                     Employee rab = new Employee();   //Создаем нового работника

@@ -29,14 +29,14 @@ public class Main {
                 sq1 = arSQ.get(i);
                 sq2 = arSQ.get(j);
 
-                if(sq1.testAvarageSalary().compareTo(sq2.testAvarageSalary())==1)  //Если в предыдущем отделе средняя зп больше. Теперь сделать еще для варианта если меньше.
+                if(sq1.testAvarageSalary().compareTo(sq2.testAvarageSalary())==1)  //Сравнение средней зарплаты по отделам. Если в первом больше чем во втором...
                 {
                     List<Employee> ar1 = sq1.getAr();
-                    for(int k=0;k<ar1.size();k++)
+                    for(int k=0;k<ar1.size();k++)  //Ищем из того отдела где средняя зп больше, людей у которых зп ниже средней, но выше чем средняя зп в другом отделе.
                     {
                         if(ar1.get(k).getSalary().compareTo(sq1.testAvarageSalary())==-1 &&  ar1.get(k).getSalary().compareTo(sq2.testAvarageSalary())==1)
                         {
-                            String answ = "\n Перекидываем из " + sq1.getName() + " Сотрудника " + ar1.get(k).getName() +" С доходом "+ar1.get(k).getSalary()+ " в отдел " + sq2.getName();
+                            String answ = "\n Перекидываем из " + sq1.getName() + " Сотрудника " + ar1.get(k).getName() +" С доходом "+ar1.get(k).getSalary()+ " в отдел " + sq2.getName(); //Формирование ответа.
                              answ += "\n Было в 1: " + sq1.testAvarageSalary() + " было в 2: " + sq2.testAvarageSalary() ;
                             answ+="\n Стало в 1: " +sq1.testAvarageSalary2(ar1.get(k).getSalary()) + " Стало в 2: " + sq2.testAvarageSalary2(ar1.get(k).getSalary().negate());
                             System.out.println(answ);
