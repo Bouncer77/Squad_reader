@@ -22,10 +22,10 @@ public class FileReader {
 
        try{
            rd = new java.io.FileReader(path);
+           brd = new BufferedReader(rd);
+           line = brd.readLine();
        }
        catch (IOException ex) {System.out.println("Path to file is uncorrectable"); return null;}
-        brd = new BufferedReader(rd);
-        line = brd.readLine();
         int numberLine=0; //Счетчик прочитанных строк
 
         while (line != null){ //Пока строка есть - читаем

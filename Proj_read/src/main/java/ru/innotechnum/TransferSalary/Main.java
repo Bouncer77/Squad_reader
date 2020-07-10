@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         FileReader reader = new FileReader();
        try{
@@ -48,9 +48,11 @@ public class Main {
                 }
 
             }
-       }catch (NullPointerException ex) {System.out.println("Squads not found ");}
+       }
+       catch (NullPointerException ex) {System.out.println("Squads not found ");}
        catch (ArrayIndexOutOfBoundsException exep){System.out.println("Main args is empty");}
- //     BigDecimal ds = new BigDecimal(887);
+       catch (IOException e) { System.out.println("Main. IOExeption?"); }
+        //     BigDecimal ds = new BigDecimal(887);
  //     ds = ds.divide(new BigDecimal(3),6, 2);
  //     System.out.println(ds);
     }
