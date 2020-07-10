@@ -13,8 +13,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         FileReader reader = new FileReader();
-        ArrayList<Squad> arSQ = reader.reading();
-        System.out.println(arSQ.size());
+       try{ ArrayList<Squad> arSQ = reader.reading(args[0]);
+//        System.out.println(arSQ.size());
+
+
         for(int i=0; i<arSQ.size(); i++) //Прогон по всем отделам с выводом данных
         {
 
@@ -23,7 +25,7 @@ public class Main {
 
         Squad sq1;
         Squad sq2;
-        for(int i=0; i<arSQ.size();i++)
+        for(int i=0; i<arSQ.size();i++)   //Делал без переменных, с помощью функций. Не уверен что так правильно
             for(int j=0;j<arSQ.size();j++)
             {
                 sq1 = arSQ.get(i);
@@ -45,6 +47,7 @@ public class Main {
                 }
 
             }
+       }catch (NullPointerException ex) {System.out.println("Squads not found ");}
  //     BigDecimal ds = new BigDecimal(887);
  //     ds = ds.divide(new BigDecimal(3),6, 2);
  //     System.out.println(ds);

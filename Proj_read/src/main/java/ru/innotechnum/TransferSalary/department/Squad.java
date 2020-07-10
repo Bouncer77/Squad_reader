@@ -73,6 +73,5 @@ public class Squad {
             salary=salary.divide(new BigDecimal(ar.size()+1),6,3);
         }
         return salary;
-        //return String.format("%.2f",  salary/ar.size());
     }
 }

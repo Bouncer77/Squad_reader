@@ -54,6 +54,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="ru.innotechnum.TransferSalary.Main" />
       <module name="Proj_read" />
+      <option name="PROGRAM_PARAMETERS" value="C:\\Users\\maxim\\IdeaProjects\\Squad_reader\\Proj_read\\src\\main\\resources\\squads.txt" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

@@ -15,12 +15,15 @@ public class FileReader {
 
 
 
-    ArrayList <Squad> reading() throws IOException {  //Сама функция чтения
+    ArrayList <Squad> reading(String path) throws IOException {  //Сама функция чтения
         java.io.FileReader rd;
         BufferedReader brd;
         String line; //Считываемая строка
 
-        rd = new java.io.FileReader("C:\\Users\\maxim\\IdeaProjects\\Squad_reader\\Proj_read\\src\\main\\resources\\squads.txt");
+       try{
+           rd = new java.io.FileReader(path);
+       }
+       catch (IOException ex) {System.out.println("Path to file is uncorrectable"); return null;}
         brd = new BufferedReader(rd);
         line = brd.readLine();
         int numberLine=0; //Счетчик прочитанных строк
