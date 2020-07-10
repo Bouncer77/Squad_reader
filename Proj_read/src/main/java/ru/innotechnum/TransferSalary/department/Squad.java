@@ -39,7 +39,7 @@ public class Squad {
             salary=salary.add(new BigDecimal(ar.get(i).getSalary().toString()));
            System.out.println("TD "+i+":   "+ ar.get(i).getName() + " " + ar.get(i).getSalary());
         }
-        System.out.println("Average salary: " + salary + " ar size " + ar.size());
+        System.out.println("Sum salary: " + salary + " ar size " + ar.size() + "\nAverage salary: ");
         salary = salary.divide(new BigDecimal(ar.size()),6,3);
         System.out.printf("%.2f",  salary);    //Средняя зп
     }

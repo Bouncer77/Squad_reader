@@ -32,9 +32,10 @@ public class FileReader {
                 String mas[];
                 mas = line.split("/");   // имя/доход/отдел
 
-                if(mas.length==3)
-                {
+
                 try {
+                    if(mas.length!=3) throw new Exception ("MasNot3");
+
                     Employee rab = new Employee();   //Создаем нового работника
                     rab.setName(mas[0]);             //Записываем имя
                     BigDecimal sal = new BigDecimal(mas[1]);
@@ -62,16 +63,12 @@ public class FileReader {
                 arSQ.add(squad);
             }
                 }
-                catch (java.lang.NumberFormatException ex)
-                {
+               // catch (java.lang.NumberFormatException ex )
+               catch (Exception e) {
+                    //e.printStackTrace();
                     System.out.println("ERROR AT LINE: " + numberLine);
-                  //  line = brd.readLine();  //В случае ошибки переходим к след строке
-                   // break A;
                 }
-                }else
-                {
-                    System.out.println("ERROR AT LINE TMS: " + numberLine);
-                }
+
 
             System.out.println(line);    //вывод что прочитали
             line = brd.readLine();
