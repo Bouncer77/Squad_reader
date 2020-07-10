@@ -29,7 +29,7 @@ public class FileReader {
 
                 Employee rab = new Employee();   //Создаем нового работника
                 rab.setName(mas[0]);             //Записываем имя
-                rab.setSalary(Integer.parseInt(mas[1])); //записываем доход. !!!!!!!!!ДОБАВИТЬ ОБРАБОТЧИК!!!!!!!!!
+                rab.setSalary(mas[1]); //записываем доход. !!!!!!!!!ДОБАВИТЬ ОБРАБОТЧИК!!!!!!!!!
 
                 boolean find = false;
                 for(int i= 0; i<arSQ.size();i++)  //перебираем список всех отделов

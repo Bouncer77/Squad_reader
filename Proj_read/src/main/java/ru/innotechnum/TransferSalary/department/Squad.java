@@ -1,5 +1,6 @@
 package ru.innotechnum.TransferSalary.department;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,39 +32,47 @@ public class Squad {
 
     public void testdisplay()
     {
-        double salary = 0;
+        BigDecimal salary = new BigDecimal(0);
         System.out.println("\ntestdisplay ->" + name + ": \n");
         for(int i=0; i<ar.size();i++)
         {
-            salary+=ar.get(i).getSalary();
+            salary=salary.add(new BigDecimal(ar.get(i).getSalary().toString()));
            System.out.println("TD "+i+":   "+ ar.get(i).getName() + " " + ar.get(i).getSalary());
         }
-        System.out.println("Average salary: ");
-        System.out.printf("%.2f",  salary/ar.size());    //Средняя зп
+        System.out.println("Average salary: " + salary + " ar size " + ar.size());
+        salary = salary.divide(new BigDecimal(ar.size()),6,3);
+        System.out.printf("%.2f",  salary);    //Средняя зп
     }
 
-    public double testAvarageSalary()  //Подсчет примерной зп. Точность здесь не влияет.
+    public BigDecimal testAvarageSalary()  //Подсчет средней зп по отделу
     {
-        double salary = 0;
+        BigDecimal salary = new BigDecimal(0);
         for(int i=0; i<ar.size();i++)
         {
-            salary+=ar.get(i).getSalary();
+            salary=salary.add(new BigDecimal(ar.get(i).getSalary().toString()));
         }
-        return salary/ar.size();
-        //return String.format("%.2f",  salary/ar.size());
+        salary = salary.divide(new BigDecimal(ar.size()),6,3);
+        return salary;
     }
 
-    public double testAvarageSalary2(double sal)  //Подсчет примерной зп. Точность здесь не влияет.
+    public BigDecimal testAvarageSalary2(BigDecimal sal)  //Подсчет средней зп по отделу
     {
-        double salary = 0;
+        BigDecimal salary = new BigDecimal(0);
         for(int i=0; i<ar.size();i++)
         {
-            salary+=ar.get(i).getSalary();
+            salary=salary.add(new BigDecimal(ar.get(i).getSalary().toString()));
         }
-        if(sal>0)
-        return (salary-sal)/(ar.size()-1);
+
+        salary=salary.subtract(sal);
+        if(sal.compareTo(BigDecimal.ZERO)==1)
+        {
+            salary=salary.divide(new BigDecimal(ar.size()-1),6,3);
+        }
         else
-        {return (salary-sal)/(ar.size()+1);}
+        {
+            salary=salary.divide(new BigDecimal(ar.size()+1),6,3);
+        }
+        return salary;
         //return String.format("%.2f",  salary/ar.size());
     }
 }
