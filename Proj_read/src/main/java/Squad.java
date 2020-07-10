@@ -17,11 +17,14 @@ public class Squad {
 
     public void testdisplay()
     {
+        double zp = 0;
         System.out.println("\ntestdisplay ->" + name + ": \n");
         for(int i=0; i<ar.size();i++)
         {
+            zp+=ar.get(i).getZp();
            System.out.println("TD "+i+":   "+ ar.get(i).getName() + " " + ar.get(i).getZp());
         }
-
+        System.out.println("Average salary: ");
+        System.out.printf("%.2f",  zp/ar.size());    //Средняя зп
     }
 }
