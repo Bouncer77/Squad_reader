@@ -1,3 +1,5 @@
+package ru.innotechnum.TransferSalary.department;
+
 import java.util.ArrayList;
 
 public class Squad {

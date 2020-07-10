@@ -1,3 +1,8 @@
+package ru.innotechnum.TransferSalary;
+
+import ru.innotechnum.TransferSalary.department.Employee;
+import ru.innotechnum.TransferSalary.department.Squad;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

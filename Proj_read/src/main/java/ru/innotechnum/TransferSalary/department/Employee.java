@@ -1,3 +1,5 @@
+package ru.innotechnum.TransferSalary.department;
+
 public class Employee {
     private String name;
     private int zp;

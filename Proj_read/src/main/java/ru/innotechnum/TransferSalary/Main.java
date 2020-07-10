@@ -1,3 +1,7 @@
+package ru.innotechnum.TransferSalary;
+
+import ru.innotechnum.TransferSalary.department.Squad;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
