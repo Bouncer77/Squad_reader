@@ -1,6 +1,5 @@
-package ru.innotechnum.TransferSalary;
+package ru.innotechnum.TransferSalary.ReadWrite;
 
-import com.sun.deploy.security.SelectableSecurityManager;
 import ru.innotechnum.TransferSalary.department.Employee;
 import ru.innotechnum.TransferSalary.department.Squad;
 
@@ -12,10 +11,14 @@ import java.util.ArrayList;
 public class FileReader {
     private ArrayList <Squad> arSQ = new ArrayList<Squad>();  //Список всех отделов
     private Squad squad = null;  //текущий отдел
+    private String path;
 
+   public FileReader(String filePath)
+    {
+        path=filePath;
+    }
 
-
-    ArrayList <Squad> reading(String path) throws IOException {  //Сама функция чтения
+  public ArrayList <Squad> reading() throws IOException {  //Сама функция чтения
         java.io.FileReader rd;
         BufferedReader brd;
         String line; //Считываемая строка
@@ -25,7 +28,8 @@ public class FileReader {
            brd = new BufferedReader(rd);
            line = brd.readLine();
        }
-       catch (IOException ex) {System.out.println("Path to file is uncorrectable"); return null;}
+       catch (IOException ex) {System.out.println("Path to file not found"); return null;}
+
         int numberLine=0; //Счетчик прочитанных строк
 
         while (line != null){ //Пока строка есть - читаем
@@ -35,16 +39,13 @@ public class FileReader {
                 String mas[];
                 mas = line.split("/");   // имя/доход/отдел
 
-
                 try {  //Траем я захватываю довольно внушительный участок кода, чтобы пропустить весь участок в случае ошибки и начать след. проход.
-                    if(mas.length!=3) throw new Exception ("MasNot3");
+                    if(mas.length!=3) throw new Exception ("MasNot3");  //генерит исключение на некорректную запись. Исключение позволяет пропустить весь след участок кода
 
                     Employee rab = new Employee();   //Создаем нового работника
                     rab.setName(mas[0]);             //Записываем имя
                     BigDecimal sal = new BigDecimal(mas[1]);
                     rab.setSalary(sal); //записываем доход.
-
-
 
 
                 boolean find = false;
@@ -58,7 +59,7 @@ public class FileReader {
                     }
                 }
 
-            if(arSQ.size()==0 || !find)
+            if(arSQ.size()==0 || !find) //Если до этого не было отделов и мы не нашли уже созданный отдел с таким же именем, то делаем новый.
             {
                 squad = new Squad();
                 squad.setName(mas[2]);
@@ -66,22 +67,13 @@ public class FileReader {
                 arSQ.add(squad);
             }
                 }
-               // catch (java.lang.NumberFormatException ex )
                catch (Exception e) {
-                    //e.printStackTrace();
-                    System.out.println("ERROR AT LINE: " + numberLine);
+                    System.out.println("ERROR AT LINE: " + numberLine); //В консоли пишется с какой строкой при чтении возникла ошибка
                 }
-
 
             System.out.println(line);    //вывод что прочитали
             line = brd.readLine();
         }
-
-        //ar.clear();
         return arSQ;
     }
-
-
-
-
 }

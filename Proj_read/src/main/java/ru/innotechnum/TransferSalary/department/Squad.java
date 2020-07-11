@@ -39,7 +39,7 @@ public class Squad {
         return name;
     }
 
-    public void testdisplay()
+    public void display()
     {
         BigDecimal salary = new BigDecimal(0);
 
@@ -47,7 +47,7 @@ public class Squad {
         for(int i=0; i<ar.size();i++)
         {
             salary=salary.add(new BigDecimal(ar.get(i).getSalary().toString()));
-            answer+="TD "+i+":   "+ ar.get(i).getName() + " " + ar.get(i).getSalary();
+            answer+="\nTD "+i+":   "+ ar.get(i).getName() + " " + ar.get(i).getSalary();
         }
         answer+="Sum salary: " + salary + " ar size " + ar.size() + "\nAverage salary: ";
         salary = salary.divide(new BigDecimal(ar.size()),6,3);
@@ -56,7 +56,7 @@ public class Squad {
         System.out.printf("%.2f",  salary);    //Средняя зп
     }
 
-    public BigDecimal testAvarageSalary()  //Подсчет средней зп по отделу
+    public BigDecimal AvarageSalary()  //Подсчет средней зп по отделу
     {
         BigDecimal salary = SumSalary(); //Подсчет суммарной зп всех работников в отделе
 
@@ -64,7 +64,7 @@ public class Squad {
         return salary;
     }
 
-    public BigDecimal testAvarageSalary2(BigDecimal sal)  //Подсчет средней зп по отделу после изменений (перевода сотрудников)
+    public BigDecimal AvarageSalaryWithTransfer(BigDecimal sal)  //Подсчет средней зп по отделу после изменений (перевода сотрудников)
     {
         BigDecimal salary = SumSalary(); //Подсчет суммарной зп всех работников в отделе
 
