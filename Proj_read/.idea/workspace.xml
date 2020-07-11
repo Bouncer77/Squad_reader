@@ -49,10 +49,10 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="ConsoleMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="C:/Program Files (x86)/Java/jdk11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="ru.innotechnum.TransferSalary.Main" />
+      <option name="MAIN_CLASS_NAME" value="ru.innotechnum.TransferSalary.ConsoleMain" />
       <module name="Proj_read" />
       <option name="PROGRAM_PARAMETERS" value="C:\\Users\\maxim\\IdeaProjects\\Squad_reader\\Proj_read\\src\\main\\resources\\squads.txt C:\\Users\\maxim\\Desktop\\An\\answerW.txt" />
       <method v="2">
@@ -61,7 +61,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.ConsoleMain" />
       </list>
     </recent_temporary>
   </component>
