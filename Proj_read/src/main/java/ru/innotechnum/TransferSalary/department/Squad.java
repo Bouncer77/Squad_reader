@@ -8,6 +8,7 @@ public class Squad {
     private List<Employee> ar = new ArrayList<Employee>(); //Данные отдела (ФИО/ЗП)
     private String name = null; //Название отдела
 
+
     private BigDecimal SumSalary() //Подсчитывает суммарную зп одного отдела в BigDecimal. Экономия места, дублирующийся код.
     {
         BigDecimal salary = new BigDecimal(0);
@@ -17,41 +18,31 @@ public class Squad {
         return salary;
     }
 
-    public List<Employee> getAr() {
-        return ar;
-    }
+    public List<Employee> getAr() { return ar; }
 
+    public void addEmpl(Employee empl) { ar.add(empl); }
 
-    public void addEmpl(Employee empl)
-    {
-        ar.add(empl);
-    }
+    public void setName(String name) { this.name=name; }
 
-    public void setName(String name)
-    {
-        this.name=name;
-    }
-
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public void display() //Выводит в консоль данные об отделе, сотрудниках и ср. зарплате
     {
-        BigDecimal salary = SumSalary(); //Сумма всех зарплат
+        BigDecimal sSalary = SumSalary(); //Сумма всех зарплат
+        BigDecimal sAlary = sSalary.divide(new BigDecimal(ar.size()),6,3);//Делим сумму на кол-во сотрудников
 
         String answer ="\nDisplay ->" + name + ": \n"; //Составляем вывод в консоль для демонстрации работы
         for(int i=0; i<ar.size();i++)
         {
             answer+="\nTD "+i+":   "+ ar.get(i).getName() + " " + ar.get(i).getSalary();
         }
-        answer+="\nSum salary: " + salary + " ar size " + ar.size() + "\nAverage salary: ";
+        answer+="\nSum salary: " + sSalary + " ar size " + ar.size() + "\nAverage salary: ";
 
-        salary = salary.divide(new BigDecimal(ar.size()),6,3);//Делим сумму на кол-во сотрудников
 
         System.out.println(answer);
-        System.out.printf("%.2f",  salary);    //Средняя зп
+        System.out.printf("%.2f",  sAlary);    //Средняя зп
     }
+
 
     public BigDecimal AvarageSalary()  //Подсчет средней зп по отделу
     {
