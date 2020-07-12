@@ -22,7 +22,7 @@ public class FileWrite {
     private void filecreator(){ //Создание файла для записи результатов или же поиск его и добавление первой строки с датой
         try {
             if(path==null)
-            {file = new File("SquadTransfer.txt"); file.createNewFile(); System.out.println("File [SquadTransfer.txt] has been created on default path " + file.getAbsolutePath() );} //Создает новый файл, если не был указан в аргументах (пересоздает уже созданный там)
+            {file = new File("SquadTransfer.txt"); System.out.println("File [SquadTransfer.txt] has been created on default path " + file.getAbsolutePath() );} //Создает новый файл, если не был указан в аргументах (пересоздает уже созданный там)
             else
             {file = new File(path);System.out.println("File Path "+file.getAbsolutePath());}
 

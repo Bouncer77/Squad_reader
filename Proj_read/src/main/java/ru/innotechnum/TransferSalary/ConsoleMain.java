@@ -13,10 +13,12 @@ public class ConsoleMain {
 
     public static void main(String[] args) {
 
-        FileRead reader = new FileRead(args[0]); //Создаем ридера для чтения файла с сотрудниками и передаем ему аргумент, содержащий путь до файла.
-        FileWrite fw = new FileWrite(args[1]); //Запись в файл. Кидаем аргумент с путем для файла. Если null, то создает файл
-
        try{
+           String path=null;
+           FileRead reader = new FileRead(args[0]); //Создаем ридера для чтения файла с сотрудниками и передаем ему аргумент, содержащий путь до файла.
+           if(args.length>1){path=args[1];}
+           FileWrite fw = new FileWrite(path); //Запись в файл. Кидаем аргумент с путем для файла. Если null, то создает файл
+
            ArrayList<Squad> arSQ = reader.reading();
 
         for(int i=0; i<arSQ.size(); i++) //Прогон по всем отделам с выводом данных
