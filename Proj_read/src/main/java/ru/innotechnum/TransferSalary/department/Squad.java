@@ -21,9 +21,6 @@ public class Squad {
         return ar;
     }
 
-    public void setAr(ArrayList<Employee> as) {  //Пока добавил только сеттеры для выполнения первичной задачи
-        ar.addAll(0,as);
-    }
 
     public void addEmpl(Employee empl)
     {
@@ -39,18 +36,18 @@ public class Squad {
         return name;
     }
 
-    public void display()
+    public void display() //Выводит в консоль данные об отделе, сотрудниках и ср. зарплате
     {
-        BigDecimal salary = new BigDecimal(0);
+        BigDecimal salary = SumSalary(); //Сумма всех зарплат
 
-        String answer ="\ntestdisplay ->" + name + ": \n"; //Составляем вывод в консоль для демонстрации работы
+        String answer ="\nDisplay ->" + name + ": \n"; //Составляем вывод в консоль для демонстрации работы
         for(int i=0; i<ar.size();i++)
         {
-            salary=salary.add(new BigDecimal(ar.get(i).getSalary().toString()));
             answer+="\nTD "+i+":   "+ ar.get(i).getName() + " " + ar.get(i).getSalary();
         }
-        answer+="Sum salary: " + salary + " ar size " + ar.size() + "\nAverage salary: ";
-        salary = salary.divide(new BigDecimal(ar.size()),6,3);
+        answer+="\nSum salary: " + salary + " ar size " + ar.size() + "\nAverage salary: ";
+
+        salary = salary.divide(new BigDecimal(ar.size()),6,3);//Делим сумму на кол-во сотрудников
 
         System.out.println(answer);
         System.out.printf("%.2f",  salary);    //Средняя зп
@@ -70,11 +67,11 @@ public class Squad {
 
         salary=salary.subtract(sal); //Вычитаем из суммарной зп зп переводящегося сотрудника (или складываем. Может придти отрицательное число для рассчетов)
 
-        if(sal.compareTo(BigDecimal.ZERO)>0)
+        if(sal.compareTo(BigDecimal.ZERO)==1) //В зависимости от знака sal - открепляем или прикрепляем сотрудника к отделу.
         {
             salary=salary.divide(new BigDecimal(ar.size()-1),6,3);
         }
-        if(sal.compareTo(BigDecimal.ZERO)<0)
+        if(sal.compareTo(BigDecimal.ZERO)==-1)
         {
             salary=salary.divide(new BigDecimal(ar.size()+1),6,3);
         }

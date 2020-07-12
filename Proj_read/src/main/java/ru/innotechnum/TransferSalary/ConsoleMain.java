@@ -1,6 +1,6 @@
 package ru.innotechnum.TransferSalary;
 
-import ru.innotechnum.TransferSalary.ReadWrite.FileReader;
+import ru.innotechnum.TransferSalary.ReadWrite.FileRead;
 import ru.innotechnum.TransferSalary.ReadWrite.FileWrite;
 import ru.innotechnum.TransferSalary.department.Employee;
 import ru.innotechnum.TransferSalary.department.Squad;
@@ -13,13 +13,11 @@ public class ConsoleMain {
 
     public static void main(String[] args) {
 
-        FileReader reader = new FileReader(args[0]); //Создаем ридера для чтения файла с сотрудниками и передаем ему аргумент, содержащий путь до файла.
+        FileRead reader = new FileRead(args[0]); //Создаем ридера для чтения файла с сотрудниками и передаем ему аргумент, содержащий путь до файла.
         FileWrite fw = new FileWrite(args[1]); //Запись в файл. Кидаем аргумент с путем для файла. Если null, то создает файл
 
        try{
-
            ArrayList<Squad> arSQ = reader.reading();
-
 
         for(int i=0; i<arSQ.size(); i++) //Прогон по всем отделам с выводом данных
         {
@@ -46,7 +44,7 @@ public class ConsoleMain {
                              answ += "\n Было в 1: " + sq1.AvarageSalary() + " было в 2: " + sq2.AvarageSalary() ;
                             answ+="\n Стало в 1: " +sq1.AvarageSalaryWithTransfer(ar1.get(k).getSalary()) + " Стало в 2: " + sq2.AvarageSalaryWithTransfer(ar1.get(k).getSalary().negate());
 
-                            fw.CreateFile(answ); //Кидаем на запись в файл вариант с переводом сотрудника
+                            fw.WriteAnswer(answ); //Кидаем на запись в файл вариант с переводом сотрудника
                             System.out.println(answ);
                         }
                     }

@@ -8,12 +8,12 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-public class FileReader {
+public class FileRead {
     private ArrayList <Squad> arSQ = new ArrayList<Squad>();  //Список всех отделов
     private Squad squad = null;  //текущий отдел
     private String path;
 
-   public FileReader(String filePath)
+   public FileRead(String filePath)
     {
         path=filePath;
     }
@@ -27,8 +27,8 @@ public class FileReader {
            rd = new java.io.FileReader(path);
            brd = new BufferedReader(rd);
            line = brd.readLine();
-       }
-       catch (IOException ex) {System.out.println("Path to file not found"); return null;}
+       }catch (IOException ex) {System.out.println("Path to file not found"); return null;}
+
 
         int numberLine=0; //Счетчик прочитанных строк
 
