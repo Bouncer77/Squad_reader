@@ -5,6 +5,7 @@
 переводов сотрудников из одного отдела в другой, при которых средняя зарплата увеличивается в обоих отделах.
 
 Файл для ознакомления со списком сотрудников: [squads.txt](https://github.com/samurayrus/Squad_reader/blob/Rabotnik_OBJ/Proj_read/squads.txt)
+
 Файл для ознакомления с результатом работы программы: [SquadTransfer.txt](https://github.com/samurayrus/Squad_reader/blob/Rabotnik_OBJ/Proj_read/SquadTransfer.txt)
 
 Пример работы программы:
