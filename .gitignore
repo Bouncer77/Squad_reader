@@ -1,0 +1,13 @@
+
+Proj_read/.idea/compiler.xml
+Proj_read/.idea/misc.xml
+Proj_read/.idea/uiDesigner.xml
+Proj_read/.idea/vcs.xml
+Proj_read/.idea/workspace.xml
+Proj_read/target/classes/META-INF/Proj_read.kotlin_module
+Proj_read/target/classes/ru/innotechnum/TransferSalary/ConsoleMain.class
+Proj_read/target/classes/ru/innotechnum/TransferSalary/department/Employee.class
+Proj_read/target/classes/ru/innotechnum/TransferSalary/department/Squad.class
+Proj_read/target/classes/ru/innotechnum/TransferSalary/ReadWrite/FileRead.class
+Proj_read/target/classes/ru/innotechnum/TransferSalary/ReadWrite/FileWrite.class
+Proj_read/target/classes/squads.txt
