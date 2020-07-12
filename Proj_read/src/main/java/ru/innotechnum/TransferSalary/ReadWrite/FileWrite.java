@@ -40,7 +40,7 @@ public class FileWrite {
     }
 
 
-    public void WriteAnswer(String answer) {
+    public void writeAnswer(String answer) {
         try {
             String ans[] = answer.split("\n");  //Чтобы ответ был не в одну строку, а блоком. Так читабельней
             for(int h=1;h<ans.length;h++)

@@ -44,7 +44,7 @@ public class Squad {
     }
 
 
-    public BigDecimal AvarageSalary()  //Подсчет средней зп по отделу
+    public BigDecimal avarageSalary()  //Подсчет средней зп по отделу
     {
         BigDecimal salary = SumSalary(); //Подсчет суммарной зп всех работников в отделе
 
@@ -52,7 +52,7 @@ public class Squad {
         return salary;
     }
 
-    public BigDecimal AvarageSalaryWithTransfer(BigDecimal sal)  //Подсчет средней зп по отделу после изменений (перевода сотрудников)
+    public BigDecimal avarageSalaryWithTransfer(BigDecimal sal)  //Подсчет средней зп по отделу после изменений (перевода сотрудников)
     {
         BigDecimal salary = SumSalary(); //Подсчет суммарной зп всех работников в отделе
 
