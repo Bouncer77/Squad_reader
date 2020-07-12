@@ -6,6 +6,7 @@
 
 Файл для ознакомления со списком сотрудников: 
 https://github.com/samurayrus/Squad_reader/blob/Rabotnik_OBJ/Proj_read/squads.txt
+
 Файл для ознакомления с результатом работы программы: 
 https://github.com/samurayrus/Squad_reader/blob/Rabotnik_OBJ/Proj_read/SquadTransfer.txt
 
