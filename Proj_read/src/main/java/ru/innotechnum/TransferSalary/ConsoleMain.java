@@ -1,7 +1,7 @@
 package ru.innotechnum.TransferSalary;
 
-import ru.innotechnum.TransferSalary.ReadWrite.FileRead;
-import ru.innotechnum.TransferSalary.ReadWrite.FileWrite;
+import ru.innotechnum.TransferSalary.readWrite.FileRead;
+import ru.innotechnum.TransferSalary.readWrite.FileWrite;
 import ru.innotechnum.TransferSalary.department.Employee;
 import ru.innotechnum.TransferSalary.department.Squad;
 
@@ -20,7 +20,7 @@ public class ConsoleMain {
            
             switch (args.length)
             {
-                case 3: ara=Boolean.parseBoolean(args[2]); //Отвечает за перезапись файла после каждого запуска программы. По дефолту перезаписывает. True - будет добавлять в конец
+                case 3: ara=Boolean.parseBoolean(args[2]);  //Отвечает за перезапись файла после каждого запуска программы. По дефолту перезаписывает. True - будет добавлять в конец
                 case 2:  path=args[1]; //Путь для файла с результатами. Если null, то создает файл
                 case 1:  fw = new FileWrite(path, ara);
                 reader = new FileRead(args[0]); //Создаем ридера для чтения файла с сотрудниками и передаем ему аргумент, содержащий путь до файла.

@@ -1,4 +1,4 @@
-package ru.innotechnum.TransferSalary.ReadWrite;
+package ru.innotechnum.TransferSalary.readWrite;
 
 import java.io.BufferedWriter;
 import java.io.File;

@@ -1,4 +1,4 @@
-package ru.innotechnum.TransferSalary.ReadWrite;
+package ru.innotechnum.TransferSalary.readWrite;
 
 import ru.innotechnum.TransferSalary.department.Employee;
 import ru.innotechnum.TransferSalary.department.Squad;
@@ -18,7 +18,7 @@ public class FileRead {
         path=filePath;
     }
 
-  public ArrayList <Squad> reading() throws IOException {  //Сама функция чтения
+   public ArrayList <Squad> reading() throws IOException {  //Сама функция чтения
         java.io.FileReader rd;
         BufferedReader brd;
         String line; //Считываемая строка
@@ -40,7 +40,7 @@ public class FileRead {
                 mas = line.split("/");   // имя/доход/отдел
 
                 try {  //Траем я захватываю довольно внушительный участок кода, чтобы пропустить весь участок в случае ошибки и начать след. проход.
-                    if(mas.length!=3) throw new Exception ("MasNot3");  //генерит исключение на некорректную запись. Исключение позволяет пропустить весь след участок кода
+                    if(mas.length!=3) throw new Exception ("Mass not 3");  //генерит исключение на некорректную запись. Исключение позволяет пропустить весь след участок кода
 
                     Employee rab = new Employee();   //Создаем нового работника
                     rab.setName(mas[0]);             //Записываем имя
@@ -51,7 +51,7 @@ public class FileRead {
                 boolean find = false;
                 for(int i= 0; i<arSQ.size();i++)  //перебираем список всех отделов
                 {
-                    if(arSQ.get(i).getName().equals(mas[2])) //Если находим уже созданный с таким именем
+                    if(arSQ.get(i).getName().equalsIgnoreCase(mas[2])) //Если находим уже созданный с таким именем (Добавил игнор регистра из-за возможных опечаток при наборе файла(Tech =tech)).
                     {
                         find=true;
                         arSQ.get(i).addEmpl(rab); //Записываем в список отдела нового сотрудника

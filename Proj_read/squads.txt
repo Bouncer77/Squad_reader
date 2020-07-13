@@ -1,6 +1,6 @@
 NotSure/300/Tech
 d/23/
-NotYes/305/Tech
+NotYes/305/tech
 Ivan /500/Tech
 Francisc II /33ф3/Already
 Maxim /777/Tech
