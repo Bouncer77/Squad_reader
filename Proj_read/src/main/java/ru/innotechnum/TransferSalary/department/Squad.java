@@ -29,7 +29,7 @@ public class Squad {
     public void display() //Выводит в консоль данные об отделе, сотрудниках и ср. зарплате
     {
         BigDecimal sSalary = SumSalary(); //Сумма всех зарплат
-        BigDecimal sAlary = sSalary.divide(new BigDecimal(ar.size()),6,3);//Делим сумму на кол-во сотрудников
+        BigDecimal sAlary = sSalary.divide(new BigDecimal(ar.size()),6,3);//Делим сумму на кол-во сотрудников. Решил использовать для вычислений 6 знаков после запятой
 
         String answer ="\nDisplay ->" + name + ": \n"; //Составляем вывод в консоль для демонстрации работы
         for(int i=0; i<ar.size();i++)
