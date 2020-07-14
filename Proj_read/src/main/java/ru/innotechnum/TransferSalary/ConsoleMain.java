@@ -28,22 +28,22 @@ public class ConsoleMain {
             }
             ArrayList<Squad> arSQ = reader.reading();
 
-            for(int i=0; i<arSQ.size(); i++) { //Прогон по всем отделам с выводом данных
+            for (int i=0; i<arSQ.size(); i++) { //Прогон по всем отделам с выводом данных
                 arSQ.get(i).display();
             }
 //Отдельная
             Squad sq1;
             Squad sq2;
             String answ=""; //Формирование текста дял файла/вывода
-            for(int i=0; i<arSQ.size();i++)   //Делал без переменных, с помощью функций. Не уверен что так правильно
-                for(int j=0;j<arSQ.size();j++) {
+            for (int i=0; i<arSQ.size();i++)   //Делал без переменных, с помощью функций. Не уверен что так правильно
+                for (int j=0;j<arSQ.size();j++) {
                     sq1 = arSQ.get(i);
                     sq2 = arSQ.get(j);
                     //Проверка на тот же отдел.
-                    if(sq1.avarageSalary().compareTo(sq2.avarageSalary())==1) {  //Сравнение средней зарплаты по отделам. Если в первом больше чем во втором...
+                    if (sq1.avarageSalary().compareTo(sq2.avarageSalary())==1) {  //Сравнение средней зарплаты по отделам. Если в первом больше чем во втором...
                         List<Employee> ar1 = sq1.getAr();
-                        for(int k=0;k<ar1.size();k++) { //Ищем из того отдела где средняя зп больше, людей у которых зп ниже средней, но выше чем средняя зп в другом отделе.
-                            if(ar1.get(k).getSalary().compareTo(sq1.avarageSalary())==-1 &&  ar1.get(k).getSalary().compareTo(sq2.avarageSalary())==1) {
+                        for (int k=0;k<ar1.size();k++) { //Ищем из того отдела где средняя зп больше, людей у которых зп ниже средней, но выше чем средняя зп в другом отделе.
+                            if (ar1.get(k).getSalary().compareTo(sq1.avarageSalary())==-1 &&  ar1.get(k).getSalary().compareTo(sq2.avarageSalary())==1) {
                                 answ = "\n Перекидываем из " + sq1.getName() + " Сотрудника " + ar1.get(k).getName() +" С доходом "+ar1.get(k).getSalary()+ " в отдел " + sq2.getName(); //Формирование ответа.
                                 answ += "\n Было в 1: " + sq1.avarageSalary() + " было в 2: " + sq2.avarageSalary() ;
                                 answ+="\n Стало в 1: " +sq1.avarageSalaryWithTransfer(ar1.get(k).getSalary()) + " Стало в 2: " + sq2.avarageSalaryWithTransfer(ar1.get(k).getSalary().negate());

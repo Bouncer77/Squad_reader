@@ -23,7 +23,7 @@ public class FileWrite {
 
     private void filecreator(){ //Создание файла для записи результатов или же поиск его и добавление первой строки с датой
         try {
-            if(path==null || path.equals("-")) {
+            if (path==null || path.equals("-")) {
                 file = new File("SquadTransfer.txt"); System.out.println("File [SquadTransfer.txt] was created using the default path " + file.getAbsolutePath() );    //Создает новый файл, если не был указан в аргументах (пересоздает уже созданный там)
             } else {
                 file = new File(path); System.out.println("File Path "+file.getAbsolutePath());
@@ -42,7 +42,7 @@ public class FileWrite {
     public void writeAnswer(String answer) {
         try {
             String ans[] = answer.split("\n");  //Чтобы ответ был не в одну строку, а блоком. Так читабельней
-            for(int h=1;h<ans.length;h++) {
+            for (int h=1;h<ans.length;h++) {
                 bw.write(ans[h]);
                 bw.newLine();
                 bw.flush();
