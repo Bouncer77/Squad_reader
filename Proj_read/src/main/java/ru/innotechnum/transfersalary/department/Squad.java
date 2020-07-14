@@ -46,15 +46,16 @@ public class Squad {
         System.out.println(answer);
         System.out.printf("%.2f",  avarageSalary(CHARS_AFTER_POINT));    //Среднний доход
     }
-
-
-    public BigDecimal avarageSalary(int CHARS_AFTER_POINT) {  //Подсчет средней зп по отделу
+    
+    //Подсчет средней зп по отделу
+    public BigDecimal avarageSalary(int CHARS_AFTER_POINT) {
         BigDecimal salary = sumSalary(); //Подсчет суммарной зп всех работников в отделе
         salary = salary.divide(new BigDecimal(listEmpl.size()),CHARS_AFTER_POINT,3);
         return salary;
     }
 
-    public BigDecimal avarageSalaryWithTransfer(BigDecimal sal, int CHARS_AFTER_POINT) {  //Подсчет средней зп по отделу после изменений (перевода сотрудников)
+    //Подсчет средней зп по отделу после изменений (перевода сотрудников)
+    public BigDecimal avarageSalaryWithTransfer(BigDecimal sal, int CHARS_AFTER_POINT) {
         BigDecimal salary = sumSalary(); //Подсчет суммарной зп всех работников в отделе
         salary=salary.subtract(sal); //Вычитаем из суммарной зп зп переводящегося сотрудника (или складываем. Может придти отрицательное число для рассчетов)
 
