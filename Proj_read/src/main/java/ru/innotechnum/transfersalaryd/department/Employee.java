@@ -1,4 +1,4 @@
-package ru.innotechnum.transfersalary.department;
+package ru.innotechnum.transfersalaryd.department;
 
 import java.math.BigDecimal;
 
