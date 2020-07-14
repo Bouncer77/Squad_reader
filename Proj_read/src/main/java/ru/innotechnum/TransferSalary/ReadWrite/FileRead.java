@@ -4,20 +4,21 @@ import ru.innotechnum.transfersalary.department.Employee;
 import ru.innotechnum.transfersalary.department.Squad;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class FileRead {
     private String path;
+    private FileReader fileReader;
+    BufferedReader bufferedReader;
 
    public FileRead(String filePath) {
        path=filePath;
     }
 
-   private Employee parsingString(String[] mas) throws NumberFormatException { //Проверки на входные данные
+   private Employee parsingString(String[] mas) { //Проверки на входные данные
        if (mas.length!=3) {
            System.out.println("Строка состоит не из трех частей, а из " + mas.length);
            return null;
@@ -45,14 +46,12 @@ public class FileRead {
    }
 
    public HashMap<String,Squad> reading() {  //Сама функция чтения
-       java.io.FileReader rd;
-       BufferedReader brd;
        String line; //Считываемая строка
 
        try {
-           rd = new java.io.FileReader(path);
-           brd = new BufferedReader(rd);
-           line = brd.readLine();
+           fileReader = new java.io.FileReader(path);
+           bufferedReader = new BufferedReader(fileReader);
+           line = bufferedReader.readLine();
        } catch (IOException ex) {
            System.out.println("Path to file not found");
            return null;
@@ -69,30 +68,41 @@ public class FileRead {
                 if (rab==null) {
                     System.out.println("Некорректная запись в строке " +numberLine+"\n"+line);
                     try {
-                        line = brd.readLine();
+                        line = bufferedReader.readLine();  //Читаем след строку
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        System.out.println("Ошибка чтения");
                     }
-                    continue;
+                    continue;  //Пропускаем этот цикл
                 }
 
                 if (hashMapSquads.containsKey(mas[2])) {  //Ищем отдел с таким именем и если находим, добавляем сотрудника в него
                     hashMapSquads.get(mas[2]).addEmpl(rab);
-                } else {          //Если нет, то создаем новый отдел и добавляем сотрудника
+                } else {                                  //Если нет, то создаем новый отдел и добавляем сотрудника
                     Squad squad = new Squad();
-                    squad.setName(mas[2]);  //Имя отдела хранить в нем уже нет надобности, но на всякий оставлю
+                    squad.setName(mas[2]);                //Имя отдела хранить в нем уже нет надобности, но на всякий оставлю
                     squad.addEmpl(rab);
                     hashMapSquads.put(mas[2],squad);
 
                 }
-            System.out.println(line);    //вывод что прочитали
+            System.out.println(line);    //вывод прочитанной строки
             try {
-                line = brd.readLine();
+                line = bufferedReader.readLine();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
        return hashMapSquads;
+   }
+
+   public void closer(){
+       try {
+           fileReader.close();
+           bufferedReader.close();
+       } catch (IOException e) {
+           e.printStackTrace();
+           System.out.println("Ошибка чтения");
+       }
+
    }
 } //Трай с ресурсами
 //hashmap get or default для отделов

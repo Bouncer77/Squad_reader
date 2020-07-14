@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ConsoleMain {
-//C:\Users\maxim\IdeaProjects\Squad_reader\Proj_read\squads.txt  C:\Users\maxim\Desktop\An\answerW.txt true
+
     public static void main(String[] args) {
             FileWrite writer = null;
             FileRead reader = null;
@@ -26,6 +26,7 @@ public class ConsoleMain {
             }
 
             HashMap<String,Squad> hashMapSquads = reader.reading();
+            reader.closer(); //Закрываем подключение на считывание
             /*
             Если возвращает null, то в ридере что-то пошло не так.
             Значит завершаем работу метода.
@@ -38,35 +39,40 @@ public class ConsoleMain {
             for (HashMap.Entry<String, Squad> entry : hashMapSquads.entrySet()) { //Прогон по всем отделам с выводом данных
                 entry.getValue().display();
             }
-            calculate(hashMapSquads,writer);
+            calculate(hashMapSquads, writer);
             writer.closer();
     }
 
+    //Вычисления и вывод результатов
     private static void calculate(HashMap<String,Squad> hashMapSquads, FileWrite fileWrite)
     {
         Squad sq1;
         Squad sq2;
-        String answ=""; //Формирование текста дял файла/вывода
-        for (HashMap.Entry<String, Squad> entryFirst : hashMapSquads.entrySet())   //Делал без переменных, с помощью функций. Не уверен что так правильно
+        String answer="";
+        /*
+            Формирование текста дял файла/вывода.
+            Решил не использовать StringBuilder, А написал ниже answer= ""+""+""...
+            Из за того, что String перегружен, то все ок и работать будет быстрее чем в билдере.
+        * */
+        for (HashMap.Entry<String, Squad> entryFirst : hashMapSquads.entrySet())
             for (HashMap.Entry<String, Squad> entryTwo : hashMapSquads.entrySet()) {
-                sq1 = entryFirst.getValue();
-                sq2 = entryTwo.getValue();
-                //Проверка на тот же отдел.
-                if (sq1.avarageSalary().compareTo(sq2.avarageSalary())>0) {  //Сравнение средней зарплаты по отделам. Если в первом больше чем во втором... Проверка на тот же отдел не нужна, т.к своя зп не может быть больше своей же зп
-                    List<Employee> employeeList = sq1.getAr();
-                    for (int k=0;k<employeeList.size();k++) { //Ищем из того отдела где средняя зп больше, людей у которых зп ниже средней, но выше чем средняя зп в другом отделе.
-                        if (employeeList.get(k).getSalary().compareTo(sq1.avarageSalary())==-1 &&  employeeList.get(k).getSalary().compareTo(sq2.avarageSalary())==1) { //Формирование ответа.
-                            answ = "\n Перекидываем из " + sq1.getName() + " Сотрудника " + employeeList.get(k).getName() +" С доходом "+employeeList.get(k).getSalary()+ " в отдел " + sq2.getName()
-                            + "\n Было в 1: " + sq1.avarageSalary() + " было в 2: " + sq2.avarageSalary()
-                            + "\n Стало в 1: " +sq1.avarageSalaryWithTransfer(employeeList.get(k).getSalary()) + " Стало в 2: " + sq2.avarageSalaryWithTransfer(employeeList.get(k).getSalary().negate());
-                            fileWrite.writeAnswer(answ); //Кидаем на запись в файл вариант с переводом сотрудника
-                            System.out.println(answ);
+                if (entryFirst!=entryTwo) {
+                    sq1 = entryFirst.getValue();
+                    sq2 = entryTwo.getValue();
+                    if (sq1.avarageSalary().compareTo(sq2.avarageSalary())>0) { //Нет проверки на тот же отдел, т.к зп в одном отделе не может отличаться от своей же.
+                        List<Employee> employeeList = sq1.getAr();
+                        for (int k=0;k<employeeList.size();k++) { //Ищем из того отдела где средняя зп больше, людей у которых зп ниже средней, но выше чем средняя зп в другом отделе.
+                            if (employeeList.get(k).getSalary().compareTo(sq1.avarageSalary())==-1 &&  employeeList.get(k).getSalary().compareTo(sq2.avarageSalary())==1) { //Формирование ответа.
+                                answer = "\n Перекидываем из " + sq1.getName() + " Сотрудника " + employeeList.get(k).getName() +" С доходом "+employeeList.get(k).getSalary()+ " в отдел " + sq2.getName()
+                                + "\n Было в 1: " + sq1.avarageSalary() + " было в 2: " + sq2.avarageSalary()
+                                + "\n Стало в 1: " +sq1.avarageSalaryWithTransfer(employeeList.get(k).getSalary()) + " Стало в 2: " + sq2.avarageSalaryWithTransfer(employeeList.get(k).getSalary().negate());
+                                fileWrite.writeAnswer(answer); //Кидаем на запись в файл вариант с переводом сотрудника
+                                System.out.println(answer);
+                            }
                         }
                     }
                 }
             }
 
     }
-//отдельная
-//StringBuilder.
 }
