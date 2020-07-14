@@ -18,7 +18,7 @@ public class FileRead {
         path=filePath;
     }
 
-   public ArrayList <Squad> reading() throws IOException {  //Сама функция чтения
+   public ArrayList <Squad> reading(){  //Сама функция чтения
         java.io.FileReader rd;
         BufferedReader brd;
         String line; //Считываемая строка
@@ -35,18 +35,18 @@ public class FileRead {
         while (line != null){ //Пока строка есть - читаем
 
                 numberLine++; //Считаем строки для обозначения ошибочной строки.
-
+//
                 String mas[];
                 mas = line.split("/");   // имя/доход/отдел
 
                 try {  //Траем я захватываю довольно внушительный участок кода, чтобы пропустить весь участок в случае ошибки и начать след. проход.
-                    if(mas.length!=3) throw new Exception ("Mass not 3");  //генерит исключение на некорректную запись. Исключение позволяет пропустить весь след участок кода
+                    if(mas.length!=3) throw new ArrayIndexOutOfBoundsException ("В массиве не три элемента");  //генерит исключение на некорректную запись. Исключение позволяет пропустить весь след участок кода
 
                     Employee rab = new Employee();   //Создаем нового работника
                     rab.setName(mas[0]);             //Записываем имя
                     BigDecimal sal = new BigDecimal(mas[1]);
                     rab.setSalary(sal); //записываем доход.
-
+// В отдельную функцию вынести для теста
 
                 boolean find = false;
                 for(int i= 0; i<arSQ.size();i++)  //перебираем список всех отделов
@@ -72,8 +72,15 @@ public class FileRead {
                 }
 
             System.out.println(line);    //вывод что прочитали
-            line = brd.readLine();
+            try {
+                line = brd.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return arSQ;
     }
-}
+} //Трай с ресурсами
+//Не делать общих исключений
+//Форматирование биг децимал. 2 знака после запятой, знак
+//hashmap get or default для отделов

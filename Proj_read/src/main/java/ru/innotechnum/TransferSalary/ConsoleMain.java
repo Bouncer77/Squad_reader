@@ -12,7 +12,7 @@ import java.util.List;
 public class ConsoleMain {
 
     public static void main(String[] args) {
-       try{
+       try{  //!Не нужен трай
             FileWrite fw = null;
             FileRead reader = null;
             String path = null;
@@ -34,7 +34,7 @@ public class ConsoleMain {
         {
             arSQ.get(i).display();
         }
-
+//Отдельная
         Squad sq1;
         Squad sq2;
         String answ=""; //Формирование текста дял файла/вывода
@@ -43,7 +43,7 @@ public class ConsoleMain {
             {
                 sq1 = arSQ.get(i);
                 sq2 = arSQ.get(j);
-
+                //Проверка на тот же отдел.
                 if(sq1.avarageSalary().compareTo(sq2.avarageSalary())==1)  //Сравнение средней зарплаты по отделам. Если в первом больше чем во втором...
                 {
                     List<Employee> ar1 = sq1.getAr();
@@ -64,8 +64,8 @@ public class ConsoleMain {
        }
        catch (NullPointerException ex) {System.out.println("Squads not found ");}
        catch (ArrayIndexOutOfBoundsException exep){System.out.println("Main args is empty");}
-       catch (IOException e) { System.out.println("Main. IOExeption?"); }
+      // catch (IOException e) { System.out.println("Main. IOExeption?"); }
     }
-
-
+//отдельная
+//StringBuilder.
 }

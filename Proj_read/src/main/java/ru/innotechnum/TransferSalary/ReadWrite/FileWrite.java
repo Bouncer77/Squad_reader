@@ -28,15 +28,13 @@ public class FileWrite {
             else
             {file = new File(path); System.out.println("File Path "+file.getAbsolutePath());}
 
-        fw = new FileWriter(file, adding); //true чтобы не перезаписывать файл, а добавлять в конец.
-        bw = new BufferedWriter(fw);
-        bw.write("_______________________"+new Date().toString()+"_________________________");
-        bw.newLine();
-        bw.flush();
+             fw = new FileWriter(file, adding); //true чтобы не перезаписывать файл, а добавлять в конец.
+             bw = new BufferedWriter(fw);
+             bw.write("_______________________"+new Date().toString()+"_________________________");
+             bw.newLine();
+             bw.flush();
 
-        } catch (IOException e) {
-            System.out.println("File for write not found");
-        }
+        } catch (IOException e) {System.out.println("File for write not found"); }
     }
 
 
@@ -50,9 +48,6 @@ public class FileWrite {
                 bw.flush();
             }
             bw.newLine();
-        } catch (IOException e) {
-           System.out.println("IOException FileWrite");
-        }
-
+        } catch (IOException e) {System.out.println("IOException FileWrite"); }
     }
 }

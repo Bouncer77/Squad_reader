@@ -20,7 +20,7 @@ public class Squad {
 
     public List<Employee> getAr() { return ar; }
 
-    public void addEmpl(Employee empl) { ar.add(empl); }
+    public void addEmpl(Employee empl) { getAr().add(empl); } //Сделать через геттер
 
     public void setName(String name) { this.name=name; }
 
