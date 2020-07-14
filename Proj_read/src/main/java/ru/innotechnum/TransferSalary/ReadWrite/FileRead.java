@@ -1,15 +1,16 @@
-package ru.innotechnum.TransferSalary.readWrite;
+package ru.innotechnum.transfersalary.readwrite;
 
-import ru.innotechnum.TransferSalary.department.Employee;
-import ru.innotechnum.TransferSalary.department.Squad;
+import ru.innotechnum.transfersalary.department.Employee;
+import ru.innotechnum.transfersalary.department.Squad;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FileRead {
-    private ArrayList <Squad> arSQ = new ArrayList<Squad>();  //Список всех отделов
+    private List<Squad> arSQ = new ArrayList<Squad>();  //Список всех отделов
     private Squad squad = null;  //текущий отдел
     private String path;
 
@@ -17,7 +18,7 @@ public class FileRead {
        path=filePath;
     }
 
-   private Employee parsingString(String mas[]) { //Здесь будут проверки на считанные значения
+   private Employee parsingString(String[] mas) { //Здесь будут проверки на считанные значения
        if (mas.length!=3) return null;  //генерит исключение на некорректную запись. Исключение позволяет пропустить весь след участок кода
 
        Employee rab = new Employee();   //Создаем нового работника
@@ -27,7 +28,7 @@ public class FileRead {
        return rab;
    }
 
-   public ArrayList <Squad> reading() {  //Сама функция чтения
+   public List <Squad> reading() {  //Сама функция чтения
        java.io.FileReader rd;
        BufferedReader brd;
        String line; //Считываемая строка
@@ -45,7 +46,7 @@ public class FileRead {
        while (line != null) { //Пока строка есть - читаем
             numberLine++; //Считаем строки для обозначения ошибочной строки.
 //
-            String mas[];
+            String[] mas;
             mas = line.split("/");   // имя/доход/отдел
 
             try {  //Траем я захватываю довольно внушительный участок кода, чтобы пропустить весь участок в случае ошибки и начать след. проход.

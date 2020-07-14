@@ -1,12 +1,10 @@
-package ru.innotechnum.TransferSalary;
+package ru.innotechnum.transfersalary;
 
-import ru.innotechnum.TransferSalary.readWrite.FileRead;
-import ru.innotechnum.TransferSalary.readWrite.FileWrite;
-import ru.innotechnum.TransferSalary.department.Employee;
-import ru.innotechnum.TransferSalary.department.Squad;
+import ru.innotechnum.transfersalary.readwrite.FileRead;
+import ru.innotechnum.transfersalary.readwrite.FileWrite;
+import ru.innotechnum.transfersalary.department.Employee;
+import ru.innotechnum.transfersalary.department.Squad;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ConsoleMain {
@@ -18,15 +16,15 @@ public class ConsoleMain {
             String path = null;
             boolean ara = false;
 
-            switch (args.length)
-            {
+            switch (args.length) {
                 case 3: ara=Boolean.parseBoolean(args[2]);  //Отвечает за перезапись файла после каждого запуска программы. По дефолту перезаписывает. True - будет добавлять в конец
                 case 2:  path=args[1]; //Путь для файла с результатами. Если null, то создает файл
                 case 1:  fw = new FileWrite(path, ara);
                 reader = new FileRead(args[0]); break; //Создаем ридера для чтения файла с сотрудниками и передаем ему аргумент, содержащий путь до файла.
                 case 0: throw new ArrayIndexOutOfBoundsException();
+                default:
             }
-            ArrayList<Squad> arSQ = reader.reading();
+            List<Squad> arSQ = reader.reading();
 
             for (int i=0; i<arSQ.size(); i++) { //Прогон по всем отделам с выводом данных
                 arSQ.get(i).display();
