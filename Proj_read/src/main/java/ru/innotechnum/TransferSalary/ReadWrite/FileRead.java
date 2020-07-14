@@ -13,27 +13,30 @@ public class FileRead {
     private Squad squad = null;  //текущий отдел
     private String path;
 
-   public FileRead(String filePath)
-    {
+   public FileRead(String filePath) {
         path=filePath;
     }
 
-   public ArrayList <Squad> reading(){  //Сама функция чтения
+    private void parsingString() {
+
+    }
+
+   public ArrayList <Squad> reading() {  //Сама функция чтения
         java.io.FileReader rd;
         BufferedReader brd;
         String line; //Считываемая строка
 
-       try{
+       try {
            rd = new java.io.FileReader(path);
            brd = new BufferedReader(rd);
            line = brd.readLine();
-       }catch (IOException ex) {System.out.println("Path to file not found"); return null;}
-
+       } catch (IOException ex) {
+         System.out.println("Path to file not found");
+         return null;
+       }
 
         int numberLine=0; //Счетчик прочитанных строк
-
         while (line != null){ //Пока строка есть - читаем
-
                 numberLine++; //Считаем строки для обозначения ошибочной строки.
 //
                 String mas[];
@@ -48,35 +51,31 @@ public class FileRead {
                     rab.setSalary(sal); //записываем доход.
 // В отдельную функцию вынести для теста
 
-                boolean find = false;
-                for(int i= 0; i<arSQ.size();i++)  //перебираем список всех отделов
-                {
-                    if(arSQ.get(i).getName().equalsIgnoreCase(mas[2])) //Если находим уже созданный с таким именем (Добавил игнор регистра из-за возможных опечаток при наборе файла(Tech =tech)).
-                    {
-                        find=true;
-                        arSQ.get(i).addEmpl(rab); //Записываем в список отдела нового сотрудника
-                        break;
+                    boolean find = false;
+                    for(int i= 0; i<arSQ.size();i++) {  //перебираем список всех отделов
+                        if(arSQ.get(i).getName().equalsIgnoreCase(mas[2])) { //Если находим уже созданный с таким именем (Добавил игнор регистра из-за возможных опечаток при наборе файла(Tech =tech)).
+                            find=true;
+                            arSQ.get(i).addEmpl(rab); //Записываем в список отдела нового сотрудника
+                            break;
+                        }
                     }
+
+                    if(arSQ.size()==0 || !find) {//Если до этого не было отделов и мы не нашли уже созданный отдел с таким же именем, то делаем новый.
+                        squad = new Squad();
+                        squad.setName(mas[2]);
+                        squad.addEmpl(rab);
+                        arSQ.add(squad);
+                    }
+                } catch (Exception e) {
+                  System.out.println("ERROR AT LINE: " + numberLine); //В консоли пишется с какой строкой при чтении возникла ошибка
                 }
 
-            if(arSQ.size()==0 || !find) //Если до этого не было отделов и мы не нашли уже созданный отдел с таким же именем, то делаем новый.
-            {
-                squad = new Squad();
-                squad.setName(mas[2]);
-                squad.addEmpl(rab);
-                arSQ.add(squad);
-            }
+                System.out.println(line);    //вывод что прочитали
+                try {
+                    line = brd.readLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-               catch (Exception e) {
-                    System.out.println("ERROR AT LINE: " + numberLine); //В консоли пишется с какой строкой при чтении возникла ошибка
-                }
-
-            System.out.println(line);    //вывод что прочитали
-            try {
-                line = brd.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         return arSQ;
     }
