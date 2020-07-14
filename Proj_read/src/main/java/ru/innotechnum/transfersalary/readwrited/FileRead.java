@@ -1,4 +1,4 @@
-package ru.innotechnum.transfersalary.readwrite;
+package ru.innotechnum.transfersalary.readwrited;
 
 import ru.innotechnum.transfersalary.department.Employee;
 import ru.innotechnum.transfersalary.department.Squad;

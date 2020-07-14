@@ -1,7 +1,7 @@
 package ru.innotechnum.transfersalary;
 
-import ru.innotechnum.transfersalary.readwrite.FileRead;
-import ru.innotechnum.transfersalary.readwrite.FileWrite;
+import ru.innotechnum.transfersalary.readwrited.FileRead;
+import ru.innotechnum.transfersalary.readwrited.FileWrite;
 import ru.innotechnum.transfersalary.department.Employee;
 import ru.innotechnum.transfersalary.department.Squad;
 
@@ -69,15 +69,15 @@ public class ConsoleMain {
                 if (entryFirst!=entryTwo) {  //Проверка, чтобы лишний раз не сравнивало отдел с ним же
                     sq1 = entryFirst.getValue();
                     sq2 = entryTwo.getValue();
-                    if (sq1.avarageSalary(CHARS_AFTER_POINT).compareTo(sq2.avarageSalary(CHARS_AFTER_POINT))>0) { //Нет проверки на тот же отдел, т.к зп в одном отделе не может отличаться от своей же.
+                    if (sq1.avarageSalary(CHARS_AFTER_POINT).compareTo(sq2.avarageSalary(CHARS_AFTER_POINT))>0) {     //Нет проверки на тот же отдел, т.к зп в одном отделе не может отличаться от своей же.
                         List<Employee> employeeList = sq1.getListEmpl();
-                        for (int k=0;k<employeeList.size();k++) { //Ищем из того отдела где средняя зп больше, людей у которых зп ниже средней, но выше чем средняя зп в другом отделе.
+                        for (int k=0;k<employeeList.size();k++) {    //Ищем из того отдела где средняя зп больше, людей у которых зп ниже средней, но выше чем средняя зп в другом отделе.
                             if (employeeList.get(k).getSalary().compareTo(sq1.avarageSalary(CHARS_AFTER_POINT))<0 &&  employeeList.get(k).getSalary().compareTo(sq2.avarageSalary(CHARS_AFTER_POINT))>0) {
                                 answer = "\n Перекидываем из " + sq1.getName() + " Сотрудника " + employeeList.get(k).getName() +" С доходом "+employeeList.get(k).getSalary()+ " в отдел " + sq2.getName()
                                 + "\n Было в 1: " + sq1.avarageSalary(CHARS_AFTER_POINT) + " было в 2: " + sq2.avarageSalary(CHARS_AFTER_POINT)
                                 + "\n Стало в 1: " +sq1.avarageSalaryWithTransfer(employeeList.get(k).getSalary(),CHARS_AFTER_POINT)
                                 + " Стало в 2: " + sq2.avarageSalaryWithTransfer(employeeList.get(k).getSalary().negate(),CHARS_AFTER_POINT);
-                                fileWrite.writeAnswer(answer); //Кидаем на запись в файл вариант с переводом сотрудника
+                                fileWrite.writeAnswer(answer);     //Кидаем на запись в файл вариант с переводом сотрудника
                                 System.out.println(answer);
                             }
                         }
