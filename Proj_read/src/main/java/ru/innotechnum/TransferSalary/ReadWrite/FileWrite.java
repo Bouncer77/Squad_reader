@@ -52,4 +52,15 @@ public class FileWrite {
             System.out.println("IOException FileWrite");
         }
     }
+
+    public void closer()
+    {
+        try {
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Ошибка закрытия BufferedWriter || FileWriter");
+        }
+    }
 }

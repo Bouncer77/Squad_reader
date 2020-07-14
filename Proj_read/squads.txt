@@ -1,17 +1,17 @@
-NotSure/300/Tech
+NotSure/300.00/Tech
 d/23/
-NotYes/305/tech
-Ivan /500/Tech
-Francisc II /33ф3/Already
-Maxim /777/Tech
-Albert /222/Already
-VVV /232/Tech
-AAAA /332/Already
-bbb /222/Baby
-bbbdas /2da22/Baby
-ccc /123/Baby
-dddd /232/Baby
-dddasdasdd /232/Baby/dasdasd/asdasdas/123
-abc/888/Tester
-abcc/1333/Tester
-abbcc/765/Tester
+NotYes/305.00/Tech
+Ivan /500.50/Tech
+Francisc II /33ф3.00/Already
+Maxim /777.1902348910/Tech
+Albe2rt /222.00/Already
+VVV /232.00/Tech
+AAAA /332.00/Already
+bbb /222.00/Baby
+bbbdas /2da22.00/Baby
+ccc /123.00/Baby
+dddd /232.00.00/Baby
+dddasdasdd /232.00/Baby/dasdasd/asdasdas/123
+abc/888.00/Tester
+ab cc/1333.00/Tester
+ab bcc/765.00/Tester

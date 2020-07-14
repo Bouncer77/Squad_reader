@@ -7,28 +7,44 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class FileRead {
-    private List<Squad> arSQ = new ArrayList<Squad>();  //Список всех отделов
-    private Squad squad = null;  //текущий отдел
     private String path;
 
    public FileRead(String filePath) {
        path=filePath;
     }
 
-   private Employee parsingString(String[] mas) { //Здесь будут проверки на считанные значения
-       if (mas.length!=3) return null;  //генерит исключение на некорректную запись. Исключение позволяет пропустить весь след участок кода
+   private Employee parsingString(String[] mas) throws NumberFormatException { //Проверки на входные данные
+       if (mas.length!=3) {
+           System.out.println("Строка состоит не из трех частей, а из " + mas.length);
+           return null;
+       }
+
+       if (mas[0].length()<2 || !mas[0].matches("[a-zA-Z ]+")) {
+           System.out.println("Некорректное имя. Разрешены только буквы и пробелы");
+           return null;
+       }
 
        Employee rab = new Employee();   //Создаем нового работника
        rab.setName(mas[0]);             //Записываем имя
-       BigDecimal sal = new BigDecimal(mas[1]);
-       rab.setSalary(sal); //записываем доход.
+       try {
+           int numberAfterPoint = mas[1].split("\\.")[1].length(); //считаем знаки после запятой
+           if (numberAfterPoint!=2)
+               throw new NumberFormatException("Должно быть две цифры после запятой. [X.xx], а в строке " + numberAfterPoint);
+
+           BigDecimal sal = new BigDecimal(mas[1]); //BigDecimal не используется с try-with-resourcec
+           rab.setSalary(sal); //записываем доход.
+       } catch (NumberFormatException numEx){
+           System.out.println("Некорректное число.\n" + numEx.getMessage());
+           return null;
+       }
        return rab;
    }
 
-   public List <Squad> reading() {  //Сама функция чтения
+   public HashMap<String,Squad> reading() {  //Сама функция чтения
        java.io.FileReader rd;
        BufferedReader brd;
        String line; //Считываемая строка
@@ -42,37 +58,33 @@ public class FileRead {
            return null;
        }
 
-       int numberLine=0; //Счетчик прочитанных строк
-       while (line != null) { //Пока строка есть - читаем
-            numberLine++; //Считаем строки для обозначения ошибочной строки.
-//
+       HashMap<String,Squad> hashMapSquads = new HashMap<String, Squad>(); //Возвращаемый
+       int numberLine=0;     //Счетчик прочитанных строк
+       while (line != null) {     //Пока строка есть - читаем
+            numberLine++;     //Считаем строки для обозначения ошибочной строки.
             String[] mas;
-            mas = line.split("/");   // имя/доход/отдел
+            mas = line.split("/");    // имя/доход/отдел
 
-            try {  //Траем я захватываю довольно внушительный участок кода, чтобы пропустить весь участок в случае ошибки и начать след. проход.
-                Employee rab = parsingString(mas);   //Создаем нового работника
-                if (rab==null) throw new ArrayIndexOutOfBoundsException ("В массиве не три элемента");  //генерит исключение на некорректную запись. Исключение позволяет пропустить весь след участок кода
-// В отдельную функцию вынести для теста
-
-                boolean find = false;
-                for (int i= 0; i<arSQ.size();i++) {  //перебираем список всех отделов
-                    if (arSQ.get(i).getName().equalsIgnoreCase(mas[2])) { //Если находим уже созданный с таким именем (Добавил игнор регистра из-за возможных опечаток при наборе файла(Tech =tech)).
-                        find=true;
-                        arSQ.get(i).addEmpl(rab); //Записываем в список отдела нового сотрудника
-                        break;
+                Employee rab = parsingString(mas);   //Создаем нового работника с проверкой входных параметров
+                if (rab==null) {
+                    System.out.println("Некорректная запись в строке " +numberLine+"\n"+line);
+                    try {
+                        line = brd.readLine();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
+                    continue;
                 }
 
-                if (arSQ.size()==0 || !find) {//Если до этого не было отделов и мы не нашли уже созданный отдел с таким же именем, то делаем новый.
-                    squad = new Squad();
-                    squad.setName(mas[2]);
+                if (hashMapSquads.containsKey(mas[2])) {  //Ищем отдел с таким именем и если находим, добавляем сотрудника в него
+                    hashMapSquads.get(mas[2]).addEmpl(rab);
+                } else {          //Если нет, то создаем новый отдел и добавляем сотрудника
+                    Squad squad = new Squad();
+                    squad.setName(mas[2]);  //Имя отдела хранить в нем уже нет надобности, но на всякий оставлю
                     squad.addEmpl(rab);
-                    arSQ.add(squad);
-                }
-            } catch (Exception e) {
-                System.out.println("ERROR AT LINE: " + numberLine); //В консоли пишется с какой строкой при чтении возникла ошибка
-            }
+                    hashMapSquads.put(mas[2],squad);
 
+                }
             System.out.println(line);    //вывод что прочитали
             try {
                 line = brd.readLine();
@@ -80,9 +92,7 @@ public class FileRead {
                 e.printStackTrace();
             }
         }
-       return arSQ;
+       return hashMapSquads;
    }
 } //Трай с ресурсами
-//Не делать общих исключений
-//Форматирование биг децимал. 2 знака после запятой, знак
 //hashmap get or default для отделов
