@@ -58,7 +58,7 @@ public class ConsoleMain {
     private static void calculate(Map<String,Squad> hashMapSquads, FileWrite fileWrite) {
         Squad sq1;
         Squad sq2;
-        String answer="";
+        String answer=null;
         /*
             Формирование текста дял файла/вывода.
             Решил не использовать StringBuilder, А написал ниже answer= ""+""+""...
