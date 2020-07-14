@@ -14,71 +14,69 @@ public class FileRead {
     private String path;
 
    public FileRead(String filePath) {
-        path=filePath;
+       path=filePath;
     }
 
-    private void parsingString() {
-
-    }
+   private void parsingString() {}
 
    public ArrayList <Squad> reading() {  //Сама функция чтения
-        java.io.FileReader rd;
-        BufferedReader brd;
-        String line; //Считываемая строка
+       java.io.FileReader rd;
+       BufferedReader brd;
+       String line; //Считываемая строка
 
        try {
            rd = new java.io.FileReader(path);
            brd = new BufferedReader(rd);
            line = brd.readLine();
        } catch (IOException ex) {
-         System.out.println("Path to file not found");
-         return null;
+           System.out.println("Path to file not found");
+           return null;
        }
 
-        int numberLine=0; //Счетчик прочитанных строк
-        while (line != null){ //Пока строка есть - читаем
-                numberLine++; //Считаем строки для обозначения ошибочной строки.
+       int numberLine=0; //Счетчик прочитанных строк
+       while (line != null){ //Пока строка есть - читаем
+            numberLine++; //Считаем строки для обозначения ошибочной строки.
 //
-                String mas[];
-                mas = line.split("/");   // имя/доход/отдел
+            String mas[];
+            mas = line.split("/");   // имя/доход/отдел
 
-                try {  //Траем я захватываю довольно внушительный участок кода, чтобы пропустить весь участок в случае ошибки и начать след. проход.
-                    if(mas.length!=3) throw new ArrayIndexOutOfBoundsException ("В массиве не три элемента");  //генерит исключение на некорректную запись. Исключение позволяет пропустить весь след участок кода
+            try {  //Траем я захватываю довольно внушительный участок кода, чтобы пропустить весь участок в случае ошибки и начать след. проход.
+                if(mas.length!=3) throw new ArrayIndexOutOfBoundsException ("В массиве не три элемента");  //генерит исключение на некорректную запись. Исключение позволяет пропустить весь след участок кода
 
-                    Employee rab = new Employee();   //Создаем нового работника
-                    rab.setName(mas[0]);             //Записываем имя
-                    BigDecimal sal = new BigDecimal(mas[1]);
-                    rab.setSalary(sal); //записываем доход.
+                Employee rab = new Employee();   //Создаем нового работника
+                rab.setName(mas[0]);             //Записываем имя
+                BigDecimal sal = new BigDecimal(mas[1]);
+                rab.setSalary(sal); //записываем доход.
 // В отдельную функцию вынести для теста
 
-                    boolean find = false;
-                    for(int i= 0; i<arSQ.size();i++) {  //перебираем список всех отделов
-                        if(arSQ.get(i).getName().equalsIgnoreCase(mas[2])) { //Если находим уже созданный с таким именем (Добавил игнор регистра из-за возможных опечаток при наборе файла(Tech =tech)).
-                            find=true;
-                            arSQ.get(i).addEmpl(rab); //Записываем в список отдела нового сотрудника
-                            break;
-                        }
+                boolean find = false;
+                for(int i= 0; i<arSQ.size();i++) {  //перебираем список всех отделов
+                    if(arSQ.get(i).getName().equalsIgnoreCase(mas[2])) { //Если находим уже созданный с таким именем (Добавил игнор регистра из-за возможных опечаток при наборе файла(Tech =tech)).
+                        find=true;
+                        arSQ.get(i).addEmpl(rab); //Записываем в список отдела нового сотрудника
+                        break;
                     }
-
-                    if(arSQ.size()==0 || !find) {//Если до этого не было отделов и мы не нашли уже созданный отдел с таким же именем, то делаем новый.
-                        squad = new Squad();
-                        squad.setName(mas[2]);
-                        squad.addEmpl(rab);
-                        arSQ.add(squad);
-                    }
-                } catch (Exception e) {
-                  System.out.println("ERROR AT LINE: " + numberLine); //В консоли пишется с какой строкой при чтении возникла ошибка
                 }
 
-                System.out.println(line);    //вывод что прочитали
-                try {
-                    line = brd.readLine();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if(arSQ.size()==0 || !find) {//Если до этого не было отделов и мы не нашли уже созданный отдел с таким же именем, то делаем новый.
+                    squad = new Squad();
+                    squad.setName(mas[2]);
+                    squad.addEmpl(rab);
+                    arSQ.add(squad);
                 }
+            } catch (Exception e) {
+                System.out.println("ERROR AT LINE: " + numberLine); //В консоли пишется с какой строкой при чтении возникла ошибка
+            }
+
+            System.out.println(line);    //вывод что прочитали
+            try {
+                line = brd.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        return arSQ;
-    }
+       return arSQ;
+   }
 } //Трай с ресурсами
 //Не делать общих исключений
 //Форматирование биг децимал. 2 знака после запятой, знак
