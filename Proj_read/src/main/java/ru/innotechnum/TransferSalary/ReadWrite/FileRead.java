@@ -93,7 +93,7 @@ public class FileRead {
        return hashMapSquads;
    }
 
-   public void closer(){
+   public void closer() {
        try {
            fileReader.close();
            bufferedReader.close();
@@ -102,5 +102,4 @@ public class FileRead {
            System.out.println("Ошибка чтения. Closer");
        }
    }
-} //Трай с ресурсами
-//hashmap get or default для отделов
+}

@@ -14,15 +14,14 @@ public class FileWrite {
     private File file;
     private boolean adding;
 
-    public FileWrite(String path, boolean adding)
-    {
+    public FileWrite(String path, boolean adding) {
             this.path=path;
             this.adding = adding;
             filecreator();
     }
 
     //Создание файла для записи результатов или же поиск его и добавление первой строки с датой
-    private void filecreator(){
+    private void filecreator() {
         try {
             if (path==null || path.equals("-")) {
                 file = new File("SquadTransfer.txt"); System.out.println("File [SquadTransfer.txt] was created using the default path " + file.getAbsolutePath() );    //Создает новый файл, если не был указан в аргументах (пересоздает уже созданный там)

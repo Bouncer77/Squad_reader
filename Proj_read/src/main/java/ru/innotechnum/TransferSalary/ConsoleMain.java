@@ -55,8 +55,7 @@ public class ConsoleMain {
     }
 
     //Вычисления и вывод результатов
-    private static void calculate(Map<String,Squad> hashMapSquads, FileWrite fileWrite)
-    {
+    private static void calculate(Map<String,Squad> hashMapSquads, FileWrite fileWrite) {
         Squad sq1;
         Squad sq2;
         String answer="";
@@ -71,7 +70,7 @@ public class ConsoleMain {
                     sq1 = entryFirst.getValue();
                     sq2 = entryTwo.getValue();
                     if (sq1.avarageSalary(CHARS_AFTER_POINT).compareTo(sq2.avarageSalary(CHARS_AFTER_POINT))>0) { //Нет проверки на тот же отдел, т.к зп в одном отделе не может отличаться от своей же.
-                        List<Employee> employeeList = sq1.getAr();
+                        List<Employee> employeeList = sq1.getListEmpl();
                         for (int k=0;k<employeeList.size();k++) { //Ищем из того отдела где средняя зп больше, людей у которых зп ниже средней, но выше чем средняя зп в другом отделе.
                             if (employeeList.get(k).getSalary().compareTo(sq1.avarageSalary(CHARS_AFTER_POINT))<0 &&  employeeList.get(k).getSalary().compareTo(sq2.avarageSalary(CHARS_AFTER_POINT))>0) {
                                 answer = "\n Перекидываем из " + sq1.getName() + " Сотрудника " + employeeList.get(k).getName() +" С доходом "+employeeList.get(k).getSalary()+ " в отдел " + sq2.getName()
