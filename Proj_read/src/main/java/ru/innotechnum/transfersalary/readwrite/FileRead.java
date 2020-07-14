@@ -1,7 +1,7 @@
-package ru.innotechnum.transfersalaryd.readwrited;
+package ru.innotechnum.transfersalary.readwrite;
 
-import ru.innotechnum.transfersalaryd.department.Employee;
-import ru.innotechnum.transfersalaryd.department.Squad;
+import ru.innotechnum.transfersalary.department.Employee;
+import ru.innotechnum.transfersalary.department.Squad;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

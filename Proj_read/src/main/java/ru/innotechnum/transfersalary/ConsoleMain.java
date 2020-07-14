@@ -1,9 +1,9 @@
-package ru.innotechnum.transfersalaryd;
+package ru.innotechnum.transfersalary;
 
-import ru.innotechnum.transfersalaryd.readwrited.FileRead;
-import ru.innotechnum.transfersalaryd.readwrited.FileWrite;
-import ru.innotechnum.transfersalaryd.department.Employee;
-import ru.innotechnum.transfersalaryd.department.Squad;
+import ru.innotechnum.transfersalary.readwrite.FileRead;
+import ru.innotechnum.transfersalary.readwrite.FileWrite;
+import ru.innotechnum.transfersalary.department.Employee;
+import ru.innotechnum.transfersalary.department.Squad;
 
 import java.util.HashMap;
 import java.util.List;
