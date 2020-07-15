@@ -28,14 +28,12 @@ public class FileRead {
            System.out.println("Некорректное имя. Разрешены только буквы и пробелы");
            return null;
        }
-
        Employee rab = new Employee();   //Создаем нового работника
        rab.setName(mas[0]);             //Записываем имя
        try {
            int numberAfterPoint = mas[1].split("\\.")[1].length();  //считаем знаки после запятой
            if (numberAfterPoint!=2)
                throw new NumberFormatException("Должно быть два знака после запятой. [X.xx], а в строке " + numberAfterPoint);
-
            BigDecimal sal = new BigDecimal(mas[1]);
            rab.setSalary(sal);   //записываем доход.
        } catch (NumberFormatException numEx){
@@ -100,6 +98,8 @@ public class FileRead {
        } catch (IOException e) {
            e.printStackTrace();
            System.out.println("Ошибка чтения. Closer");
+       } catch (NullPointerException ex) {
+           System.out.println("Ошибка. Reader не назначен. Closer");
        }
    }
 }
