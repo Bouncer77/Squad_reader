@@ -32,12 +32,12 @@ public class FileRead {
        Employee rab = new Employee();   //Создаем нового работника
        rab.setName(mas[0]);             //Записываем имя
        try {
-           int numberAfterPoint = mas[1].split("\\.")[1].length(); //считаем знаки после запятой
+           int numberAfterPoint = mas[1].split("\\.")[1].length();  //считаем знаки после запятой
            if (numberAfterPoint!=2)
                throw new NumberFormatException("Должно быть два знака после запятой. [X.xx], а в строке " + numberAfterPoint);
 
-           BigDecimal sal = new BigDecimal(mas[1]); //BigDecimal не используется с try-with-resourcec
-           rab.setSalary(sal); //записываем доход.
+           BigDecimal sal = new BigDecimal(mas[1]);
+           rab.setSalary(sal);   //записываем доход.
        } catch (NumberFormatException numEx){
            System.out.println("Некорректное число.\n" + numEx.getMessage());
            return null;

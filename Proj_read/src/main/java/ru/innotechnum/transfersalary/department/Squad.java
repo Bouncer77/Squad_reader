@@ -46,7 +46,7 @@ public class Squad {
         System.out.println(answer);
         System.out.printf("%.2f",  avarageSalary(CHARS_AFTER_POINT));    //Среднний доход
     }
-    
+
     //Подсчет средней зп по отделу
     public BigDecimal avarageSalary(int CHARS_AFTER_POINT) {
         BigDecimal salary = sumSalary(); //Подсчет суммарной зп всех работников в отделе
