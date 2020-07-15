@@ -9,8 +9,7 @@ public class Squad {
     private String name = null; //Название отдела
 
 
-    private BigDecimal sumSalary() //Подсчитывает суммарную зп одного отдела в BigDecimal. Экономия места, дублирующийся код.
-    {
+    private BigDecimal sumSalary() { //Подсчитывает суммарную зп одного отдела в BigDecimal. Экономия места, дублирующийся код.
         BigDecimal salary = new BigDecimal(0);
         for(int i = 0; i< listEmpl.size(); i++) {
             salary = salary.add(listEmpl.get(i).getSalary());
@@ -59,10 +58,10 @@ public class Squad {
         BigDecimal salary = sumSalary(); //Подсчет суммарной зп всех работников в отделе
         salary=salary.subtract(sal); //Вычитаем из суммарной зп зп переводящегося сотрудника (или складываем. Может придти отрицательное число для рассчетов)
 
-        if(sal.compareTo(BigDecimal.ZERO)==1) //В зависимости от знака sal - открепляем или прикрепляем сотрудника к отделу.
+        if(sal.compareTo(BigDecimal.ZERO)>0) //В зависимости от знака sal - открепляем или прикрепляем сотрудника к отделу.
             salary=salary.divide(new BigDecimal(listEmpl.size()-1),CHARS_AFTER_POINT,3);
 
-        if(sal.compareTo(BigDecimal.ZERO)==-1)
+        if(sal.compareTo(BigDecimal.ZERO)<0)
             salary=salary.divide(new BigDecimal(listEmpl.size()+1),CHARS_AFTER_POINT,3);
 
         return salary;
