@@ -9,8 +9,8 @@ import java.util.Date;
 
 public class FileWrite {
     private String path;
-    private FileWriter fw;
-    private BufferedWriter bw;
+    private FileWriter fileWriter;
+    private BufferedWriter bufferedWriter;
     private File file;
     private boolean adding;
 
@@ -28,11 +28,11 @@ public class FileWrite {
             } else {
                 file = new File(path); System.out.println("File Path "+file.getAbsolutePath());
             }
-            fw = new FileWriter(file, adding); //true чтобы не перезаписывать файл, а добавлять в конец.
-            bw = new BufferedWriter(fw);
-            bw.write("_______________________"+new Date().toString()+"_________________________");
-            bw.newLine();
-            bw.flush();
+            fileWriter = new FileWriter(file, adding); //true чтобы не перезаписывать файл, а добавлять в конец.
+            bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write("_______________________"+new Date().toString()+"_________________________");
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
         } catch (IOException e) {
             System.out.println("File for write not found");
         }
@@ -43,11 +43,11 @@ public class FileWrite {
         try {
             String ans[] = answer.split("\n");  //Чтобы ответ был не в одну строку, а блоком. Так читабельней
             for (int h=1;h<ans.length;h++) {
-                bw.write(ans[h]);
-                bw.newLine();
-                bw.flush();
+                bufferedWriter.write(ans[h]);
+                bufferedWriter.newLine();
+                bufferedWriter.flush();
             }
-            bw.newLine();
+            bufferedWriter.newLine();
         } catch (IOException e) {
             System.out.println("IOException FileWrite");
         }
@@ -56,11 +56,14 @@ public class FileWrite {
     public void closer()
     {
         try {
-            bw.close();
-            fw.close();
+            bufferedWriter.close();
+            fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Ошибка закрытия BufferedWriter || FileWriter");
+            System.out.println("Ошибка закрытия FileWriter");
+        } catch (NullPointerException ex) { //Не выбрасывается, но решил добавить. Мало ли в будущем этот метод будет вызываться в другом порядке, нежели в ConsoleMain
+            ex.printStackTrace();
+            System.out.println("Ошибка закрытия FileWriter = null?");
         }
     }
 }

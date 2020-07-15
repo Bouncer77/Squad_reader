@@ -37,7 +37,7 @@ public class ConsoleMain {
             }
 
             Map<String,Squad> hashMapSquads = reader.reading();
-            reader.closer(); //Закрываем подключение
+            reader.closer(); //Закрываем подключение. В случае null внутри стоит обработчик
 
             /*
                 Если возвращает null, то в ридере что-то пошло не так.

@@ -4,6 +4,7 @@ import ru.innotechnum.transfersalary.department.Employee;
 import ru.innotechnum.transfersalary.department.Squad;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -55,6 +56,7 @@ public class FileRead {
    public Map<String,Squad> reading() {  //Сама функция чтения
        String line; //Считываемая строка
        Map<String,Squad> hashMapSquads = new HashMap<String, Squad>(); //Возвращаемый
+       // Можно было бы Filereader и bufReader счелать с try-with-resources, но так, вроде, лучше?
        try {
            fileReader = new java.io.FileReader(path);
            bufferedReader = new BufferedReader(fileReader);
