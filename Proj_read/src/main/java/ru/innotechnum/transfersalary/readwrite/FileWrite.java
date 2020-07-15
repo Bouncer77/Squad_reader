@@ -23,8 +23,8 @@ public class FileWrite {
     //Создание файла для записи результатов или же поиск его и добавление первой строки с датой
     private void filecreator() {
         try {
-            if (path==null || path.equals("-")) {
-                file = new File("SquadTransfer.txt"); System.out.println("File [SquadTransfer.txt] was created using the default path " + file.getAbsolutePath() );    //Создает новый файл, если не был указан в аргументах (пересоздает уже созданный там)
+            if (path==null || path.equals("-")) {  //Создает новый файл, если не был указан в аргументах (пересоздает уже созданный там)
+                file = new File("SquadTransfer.txt"); System.out.println("File [SquadTransfer.txt] was created using the default path " + file.getAbsolutePath() );
             } else {
                 file = new File(path); System.out.println("File Path "+file.getAbsolutePath());
             }
@@ -49,8 +49,12 @@ public class FileWrite {
             }
             bufferedWriter.newLine();
         } catch (IOException e) {
-            System.out.println("IOException FileWrite");
+            System.out.println("IOException Записи результата");
+        } catch (NullPointerException ex) {   //Не должно выскакивать, но на будущее впишу.
+            ex.printStackTrace();
+            System.out.println("Запись невозможна, т.к не был инициализирован filecreator()");
         }
+
     }
 
     public void closer()
@@ -61,7 +65,7 @@ public class FileWrite {
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Ошибка закрытия FileWriter");
-        } catch (NullPointerException ex) { //Не выбрасывается, но решил добавить. Мало ли в будущем этот метод будет вызываться в другом порядке, нежели в ConsoleMain
+        } catch (NullPointerException ex) {  //Не выбрасывается, но решил добавить. Мало ли в будущем этот метод будет вызываться в другом порядке, нежели в ConsoleMain
             ex.printStackTrace();
             System.out.println("Ошибка закрытия FileWriter = null?");
         }
