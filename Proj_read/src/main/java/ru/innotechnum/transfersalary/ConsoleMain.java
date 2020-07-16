@@ -51,7 +51,7 @@ public class ConsoleMain {
                 entry.getValue().display();
             }
             calculate(hashMapSquads, writer);
-            //writer.closer();
+            writer.closer(); //Подумать
     }
 
     //Вычисления и вывод результатов
@@ -64,19 +64,19 @@ public class ConsoleMain {
             Решил не использовать StringBuilder, А написал ниже answer= ""+""+""...
             Из за того, что String перегружен, то все ок и работать будет быстрее чем в билдере.
         * */
-        for (HashMap.Entry<String, Squad> entryFirst : hashMapSquads.entrySet())
-            for (HashMap.Entry<String, Squad> entryTwo : hashMapSquads.entrySet()) {
-                if (entryFirst!=entryTwo) {  //Проверка, чтобы лишний раз не сравнивало отдел с ним же
-                    squad1 = entryFirst.getValue();
-                    squad2 = entryTwo.getValue();
-                    if (squad1.avarageSalary().compareTo(squad2.avarageSalary())>0) {     //Нет проверки на тот же отдел, т.к зп в одном отделе не может отличаться от своей же.
+        for (Squad squadFirst : hashMapSquads.values())  //ранбше использовал EntrySet()
+            for (Squad squadTwo : hashMapSquads.values()) {
+                if (squadFirst!=squadTwo) {  //Проверка, чтобы лишний раз не сравнивало отдел с ним же
+                    squad1 = squadFirst;
+                    squad2 = squadTwo;
+                    if (squad1.avarageSalary().compareTo(squad2.avarageSalary())>0) {
                         List<Employee> employeeList = squad1.getListEmpl();
-                        for (int k=0;k<employeeList.size();k++) {    //Ищем из того отдела где средняя зп больше, людей у которых зп ниже средней, но выше чем средняя зп в другом отделе.
-                            if (employeeList.get(k).getSalary().compareTo(squad1.avarageSalary())<0 &&  employeeList.get(k).getSalary().compareTo(squad2.avarageSalary())>0) {
-                                answer = "\n Перекидываем из " + squad1.getName() + " Сотрудника " + employeeList.get(k).getName() +" С доходом "+employeeList.get(k).getSalary()+ " в отдел " + squad2.getName()
+                        for (Employee employ : employeeList) {    //Ищем из того отдела где средняя зп больше, людей у которых зп ниже средней, но выше чем средняя зп в другом отделе.
+                            if (employ.getSalary().compareTo(squad1.avarageSalary())<0 && employ.getSalary().compareTo(squad2.avarageSalary())>0) {
+                                answer = "\n Перекидываем из " + squad1.getName() + " Сотрудника " + employ.getName() +" С доходом "+ employ.getSalary()+ " в отдел " + squad2.getName()
                                 + "\n Было в 1: " + squad1.avarageSalary() + " было в 2: " + squad2.avarageSalary()
-                                + "\n Стало в 1: " +squad1.avarageSalaryWithTransfer(employeeList.get(k).getSalary())
-                                + " Стало в 2: " + squad2.avarageSalaryWithTransfer(employeeList.get(k).getSalary().negate());
+                                + "\n Стало в 1: " +squad1.avarageSalaryWithTransfer(employ.getSalary())
+                                + " Стало в 2: " + squad2.avarageSalaryWithTransfer(employ.getSalary().negate());
                                 fileWrite.writeAnswer(answer);     //Кидаем на запись в файл вариант с переводом сотрудника
                                 System.out.println(answer);
                             }
