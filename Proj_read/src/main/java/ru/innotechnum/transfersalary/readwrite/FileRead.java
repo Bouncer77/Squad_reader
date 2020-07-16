@@ -13,8 +13,6 @@ import java.util.Map;
 
 public class FileRead {
     private String path;
-    private FileReader fileReader;
-    private BufferedReader bufferedReader;
 
    public FileRead(String filePath) {
        path=filePath;
@@ -41,42 +39,27 @@ public class FileRead {
        return true;
    }
 
-   private String nextLine(String line){  //Дублирование. Используется два раза
-       try {
-           return bufferedReader.readLine();
-       } catch (IOException e) {
-           System.out.println("Ошибка чтения");
-           return null;
-       }
-   }
-
    public Map<String,Squad> reading() {  //Сама функция чтения
        String line; //Считываемая строка
        Map<String,Squad> hashMapSquads = new HashMap<String, Squad>(); //Возвращаемый
-       // Можно Filereader и bufReader счелать с try-with-resources
-       try {
-           fileReader = new java.io.FileReader(path);
-           bufferedReader = new BufferedReader(fileReader);
+
+       try(FileReader fileReader = new FileReader(path);
+           BufferedReader bufferedReader = new BufferedReader(fileReader)) { //try с ресурсами. Не нужно следить за закрытием подключения
            line = bufferedReader.readLine();
-       } catch (IOException ex) {
-           System.out.println("Path to file not found");
-           return null;
-       }
+           int numberLine=0;     //Счетчик прочитанных строк
+           while (line != null) {     //Пока строка есть - читаем
+               numberLine++;     //Считаем строки для обозначения ошибочной строки.
+               String[] mas;
+               mas = line.split("/");    // имя/доход/отдел
 
-       int numberLine=0;     //Счетчик прочитанных строк
-       while (line != null) {     //Пока строка есть - читаем
-            numberLine++;     //Считаем строки для обозначения ошибочной строки.
-            String[] mas;
-            mas = line.split("/");    // имя/доход/отдел
-
-           if(!parsingString(mas)) { // Проверка входных параметров. Если не прошел, пропускаем цикл
-               System.out.println("Некорректная запись в строке " +numberLine+"\n"+line);
-               line = nextLine(line); //След строка
-               continue;
-           } else {
-               hashMapSquads.putIfAbsent(mas[2], new Squad(mas[2])); //Если такого нет, то создаем
-               hashMapSquads.get(mas[2]).addEmpl(new Employee(mas[0],mas[1])); //Кладем в него сотрудника
-           }
+               if(!parsingString(mas)) { // Проверка входных параметров. Если не прошел, пропускаем цикл
+                   System.out.println("Некорректная запись в строке " +numberLine+"\n"+line);
+                   line = bufferedReader.readLine(); //След строка
+                   continue;
+               } else {
+                   hashMapSquads.putIfAbsent(mas[2], new Squad(mas[2])); //Если такого нет, то создаем
+                   hashMapSquads.get(mas[2]).addEmpl(new Employee(mas[0],mas[1])); //Кладем в него сотрудника
+               }
 
            /* Было раньше - старый код (удалить, для сравнения)
            Employee rab = new Employee();   //Создаем нового работника
@@ -92,21 +75,25 @@ public class FileRead {
                hashMapSquads.put(mas[2],squad);
            }*/
 
-            System.out.println(line);    //вывод прочитанной строки
-            line = nextLine(line); //След строка
-        }
+               System.out.println(line);    //вывод прочитанной строки
+               line = bufferedReader.readLine(); //След строка
+           }
+       } catch (IOException ex) {
+           System.out.println("Path to file not found");
+           return null;
+       }
        return hashMapSquads;
    }
 
-   public void closer() {
-       try {
-           fileReader.close();
-           bufferedReader.close();
-       } catch (IOException e) {
-           e.printStackTrace();
-           System.out.println("Ошибка чтения. Closer");
-       } catch (NullPointerException ex) {
-           System.out.println("Ошибка. Reader не назначен. Closer");
-       }
-   }
+  // public void closer() {
+   //    try {
+   //        fileReader.close();
+    //       bufferedReader.close();
+    //   } catch (IOException e) {
+     //      e.printStackTrace();
+    //       System.out.println("Ошибка чтения. Closer");
+     //  } catch (NullPointerException ex) {
+    //       System.out.println("Ошибка. Reader не назначен. Closer");
+    //   }
+  // }
 }
