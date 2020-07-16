@@ -6,6 +6,19 @@ public class Employee {
     private String name;
     private BigDecimal salary;
 
+    public Employee() {
+    }
+
+    public Employee(String name, BigDecimal salary) {
+        setName(name);
+        setSalary(salary);
+    }
+
+    public Employee(String name, String salary) {
+        setName(name);
+        setSalary(new BigDecimal(salary));
+    }
+
     public BigDecimal getSalary() {
         return salary;
     }

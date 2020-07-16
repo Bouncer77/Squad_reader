@@ -8,6 +8,13 @@ public class Squad {
     private List<Employee> listEmpl = new ArrayList<Employee>(); //Данные отдела (ФИО/ЗП)
     private String name = null; //Название отдела
 
+     public Squad() {
+
+     }
+
+     public Squad(String name) {
+         setName(name);
+     }
 
     private BigDecimal sumSalary() { //Подсчитывает суммарную зп одного отдела в BigDecimal. Экономия места, дублирующийся код.
         BigDecimal salary = new BigDecimal(0);

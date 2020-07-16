@@ -73,7 +73,12 @@ public class FileRead {
                System.out.println("Некорректная запись в строке " +numberLine+"\n"+line);
                line = nextLine(line); //След строка
                continue;
+           } else {
+               hashMapSquads.putIfAbsent(mas[2], new Squad(mas[2])); //Если такого нет, то создаем
+               hashMapSquads.get(mas[2]).addEmpl(new Employee(mas[0],mas[1])); //Кладем в него сотрудника
            }
+
+           /* Было раньше - старый код (удалить, для сравнения)
            Employee rab = new Employee();   //Создаем нового работника
            rab.setName(mas[0]);             //Записываем имя
            rab.setSalary(new BigDecimal(mas[1]));   //записываем доход.
@@ -82,14 +87,14 @@ public class FileRead {
                hashMapSquads.get(mas[2]).addEmpl(rab);
            } else {                                  //Если нет, то создаем новый отдел и добавляем сотрудника
                Squad squad = new Squad();
-               squad.setName(mas[2]);                //Имя отдела хранить в нем уже нет надобности, но на всякий оставлю
+               squad.setName(mas[2]);
                squad.addEmpl(rab);
                hashMapSquads.put(mas[2],squad);
-           }
+           }*/
+
             System.out.println(line);    //вывод прочитанной строки
             line = nextLine(line); //След строка
         }
-
        return hashMapSquads;
    }
 
