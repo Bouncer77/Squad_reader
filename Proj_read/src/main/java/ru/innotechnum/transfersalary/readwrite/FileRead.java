@@ -20,28 +20,25 @@ public class FileRead {
        path=filePath;
     }
 
-   private Employee parsingString(String[] mas) { //Проверки на входные данные
+   private Boolean parsingString(String[] mas) { //Проверки на входные данные
        if (mas.length!=3) {
            System.out.println("Строка состоит не из трех частей, а из " + mas.length);
-           return null;
+           return false;
        }
        if (mas[0].length()<2 || !mas[0].matches("[a-zA-Z ]+")) {
            System.out.println("Некорректное имя. Разрешены только буквы и пробелы");
-           return null;
+           return false;
        }
-       Employee rab = new Employee();   //Создаем нового работника
-       rab.setName(mas[0]);             //Записываем имя
        try {
            int numberAfterPoint = mas[1].split("\\.")[1].length();  //считаем знаки после запятой
            if (numberAfterPoint!=2)
                throw new NumberFormatException("Должно быть два знака после запятой. [X.xx], а в строке " + numberAfterPoint);
            BigDecimal sal = new BigDecimal(mas[1]);
-           rab.setSalary(sal);   //записываем доход.
        } catch (NumberFormatException numEx){
            System.out.println("Некорректное число.\n" + numEx.getMessage());
-           return null;
+           return false;
        }
-       return rab;
+       return true;
    }
 
    private String nextLine(String line){  //Дублирование. Используется два раза
@@ -56,7 +53,7 @@ public class FileRead {
    public Map<String,Squad> reading() {  //Сама функция чтения
        String line; //Считываемая строка
        Map<String,Squad> hashMapSquads = new HashMap<String, Squad>(); //Возвращаемый
-       // Можно было бы Filereader и bufReader счелать с try-with-resources, но так, вроде, лучше?
+       // Можно Filereader и bufReader счелать с try-with-resources
        try {
            fileReader = new java.io.FileReader(path);
            bufferedReader = new BufferedReader(fileReader);
@@ -72,12 +69,14 @@ public class FileRead {
             String[] mas;
             mas = line.split("/");    // имя/доход/отдел
 
-           Employee rab = parsingString(mas);   //Создаем нового работника с проверкой входных параметров
-           if (rab==null) {
+           if(!parsingString(mas)) { // Проверка входных параметров. Если не прошел, пропускаем цикл
                System.out.println("Некорректная запись в строке " +numberLine+"\n"+line);
                line = nextLine(line); //След строка
-               continue;  //Пропускаем этот цикл
+               continue;
            }
+           Employee rab = new Employee();   //Создаем нового работника
+           rab.setName(mas[0]);             //Записываем имя
+           rab.setSalary(new BigDecimal(mas[1]));   //записываем доход.
 
            if (hashMapSquads.containsKey(mas[2])) {  //Ищем отдел с таким именем и если находим, добавляем сотрудника в него
                hashMapSquads.get(mas[2]).addEmpl(rab);
@@ -90,6 +89,7 @@ public class FileRead {
             System.out.println(line);    //вывод прочитанной строки
             line = nextLine(line); //След строка
         }
+
        return hashMapSquads;
    }
 
