@@ -80,7 +80,7 @@ public class FileRead {
            }
        } catch (IOException ex) {
            System.out.println("Path to file not found");
-           return null;
+           return new HashMap<>(); //Поставил возврат map вместо null. Хотя по факту тоже самое
        }
        return hashMapSquads;
    }

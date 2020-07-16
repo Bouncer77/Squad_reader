@@ -35,14 +35,13 @@ public class ConsoleMain {
             }
 
             Map<String,Squad> hashMapSquads = reader.reading();
-            //reader.closer(); //Закрываем подключение. В случае null внутри стоит обработчик
 
             /*
                 Если возвращает null, то в ридере что-то пошло не так.
                 Значит завершаем работу метода.
                 Ошибка пишется в консоль в ридере
             */
-            if(hashMapSquads==null) {
+            if(hashMapSquads.isEmpty()) {
                 System.out.println("Завершение работы программы");
                 return;
             }
@@ -64,7 +63,7 @@ public class ConsoleMain {
             Решил не использовать StringBuilder, А написал ниже answer= ""+""+""...
             Из за того, что String перегружен, то все ок и работать будет быстрее чем в билдере.
         * */
-        for (Squad squadFirst : hashMapSquads.values())  //ранбше использовал EntrySet()
+        for (Squad squadFirst : hashMapSquads.values())  //раньше использовал EntrySet()
             for (Squad squadTwo : hashMapSquads.values()) {
                 if (squadFirst!=squadTwo) {  //Проверка, чтобы лишний раз не сравнивало отдел с ним же
                     squad1 = squadFirst;
