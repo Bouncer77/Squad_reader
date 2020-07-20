@@ -6,7 +6,6 @@ import ru.innotechnum.transfersalary.department.Employee;
 import ru.innotechnum.transfersalary.department.Squad;
 import ru.innotechnum.transfersalary.readwrite.MultiChoice;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -83,8 +82,8 @@ public class ConsoleMain {
                                 System.out.println(answer);
                             }
                         }
-                        MultiChoice mch = new MultiChoice();
-                        fileWrite.writeAnswer("\nДополнитльные варианты переводов: \n"+mch.map_creation(listGoodEmployee, squad2, squad1).entrySet().toString());
+                        MultiChoice mch = new MultiChoice(squad2, squad1); //дополнительные варианты перевода
+                        fileWrite.writeAnswer("\nДополнитльные варианты переводов: \n"+mch.mapCreation(listGoodEmployee).entrySet().toString());
                         listGoodEmployee.clear();
                     }
                 }
