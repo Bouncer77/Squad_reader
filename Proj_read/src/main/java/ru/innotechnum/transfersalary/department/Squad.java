@@ -61,7 +61,7 @@ public class Squad {
     }
 
     //Подсчет средней зп по отделу после изменений (перевода сотрудников)
-    public BigDecimal avarageSalaryWithTransfer(BigDecimal sal) {
+    public BigDecimal avarageSalaryWithTransfer(BigDecimal sal, int num) {
         BigDecimal salary = sumSalary(); //Подсчет суммарной зп всех работников в отделе
         salary=salary.subtract(sal); //Вычитаем из суммарной зп зп переводящегося сотрудника (или складываем. Может придти отрицательное число для рассчетов)
 

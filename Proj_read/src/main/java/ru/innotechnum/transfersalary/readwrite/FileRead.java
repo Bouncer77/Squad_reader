@@ -4,7 +4,6 @@ import ru.innotechnum.transfersalary.department.Employee;
 import ru.innotechnum.transfersalary.department.Squad;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -84,16 +83,4 @@ public class FileRead {
        }
        return hashMapSquads;
    }
-
-  // public void closer() {
-   //    try {
-   //        fileReader.close();
-    //       bufferedReader.close();
-    //   } catch (IOException e) {
-     //      e.printStackTrace();
-    //       System.out.println("Ошибка чтения. Closer");
-     //  } catch (NullPointerException ex) {
-    //       System.out.println("Ошибка. Reader не назначен. Closer");
-    //   }
-  // }
 }

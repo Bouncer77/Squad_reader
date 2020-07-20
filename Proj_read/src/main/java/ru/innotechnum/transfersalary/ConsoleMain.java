@@ -4,7 +4,10 @@ import ru.innotechnum.transfersalary.readwrite.FileRead;
 import ru.innotechnum.transfersalary.readwrite.FileWrite;
 import ru.innotechnum.transfersalary.department.Employee;
 import ru.innotechnum.transfersalary.department.Squad;
+import ru.innotechnum.transfersalary.readwrite.MultiChoice;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,9 +38,10 @@ public class ConsoleMain {
             }
 
             Map<String,Squad> hashMapSquads = reader.reading();
-
+        MultiChoice mc = new MultiChoice();
+        mc.map_creation();
             /*
-                Если возвращает null, то в ридере что-то пошло не так.
+                Если возвращает пустой map, то в ридере что-то пошло не так.
                 Значит завершаем работу метода.
                 Ошибка пишется в консоль в ридере
             */
@@ -59,7 +63,7 @@ public class ConsoleMain {
         Squad squad2;
         String answer=null;
         /*
-            Формирование текста дял файла/вывода.
+            Формирование текста для файла/вывода.
             Решил не использовать StringBuilder, А написал ниже answer= ""+""+""...
             Из за того, что String перегружен, то все ок и работать будет быстрее чем в билдере.
         * */
@@ -73,9 +77,10 @@ public class ConsoleMain {
                         for (Employee employ : employeeList) {    //Ищем из того отдела где средняя зп больше, людей у которых зп ниже средней, но выше чем средняя зп в другом отделе.
                             if (employ.getSalary().compareTo(squad1.avarageSalary())<0 && employ.getSalary().compareTo(squad2.avarageSalary())>0) {
                                 answer = "\n Перекидываем из " + squad1.getName() + " Сотрудника " + employ.getName() +" С доходом "+ employ.getSalary()+ " в отдел " + squad2.getName()
-                                + "\n Было в 1: " + squad1.avarageSalary() + " было в 2: " + squad2.avarageSalary()
-                                + "\n Стало в 1: " +squad1.avarageSalaryWithTransfer(employ.getSalary())
-                                + " Стало в 2: " + squad2.avarageSalaryWithTransfer(employ.getSalary().negate());
+                                 + "\n Было в 1: " + squad1.avarageSalary() + " было в 2: " + squad2.avarageSalary()
+                                  + "\n Стало в 1: " +squad1.avarageSalaryWithTransfer(employ.getSalary(), 1)
+                                   + " Стало в 2: " + squad2.avarageSalaryWithTransfer(employ.getSalary().negate(), 1);
+                              //  System.out.println(forms("\n answer ", employeeList, new ArrayList<>(),employ, 1)); //вызов в форе функции с фором. Мб Подать две переменные, список и задействованные элемементы + количество вариантов.
                                 fileWrite.writeAnswer(answer);     //Кидаем на запись в файл вариант с переводом сотрудника
                                 System.out.println(answer);
                             }
@@ -85,4 +90,38 @@ public class ConsoleMain {
             }
 
     }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*  public static String abc(String ans, Squad sq1, BigDecimal bd2, int a, List<Employee> employeeList2) {
+        String answer=ans;
+        List<Employee> employeeList = new ArrayList<>();
+        employeeList.addAll(employeeList2);
+        BigDecimal bd = bd2;
+        int i = a;
+        for (Employee employ2 : employeeList) {
+            if(sq1.avarageSalaryWithTransfer(bd.add(employ2.getSalary()), i).compareTo(sq1.avarageSalary())<0) {
+                answer += "\n и \n Сотрудника " + employ2.getName() + " С доходом " + employ2.getSalary();
+                bd.add(employ2.getSalary());
+                i++;
+                List<Employee> employeeList3 = new ArrayList<>();
+                employeeList3.addAll(employeeList);
+                employeeList3.remove(employ2);
+               // answer+= abc(answer, sq1, bd,i,employeeList3);
+            }
+        }
+        return answer;
+    }*/
 }
