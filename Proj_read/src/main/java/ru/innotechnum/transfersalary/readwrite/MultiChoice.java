@@ -56,7 +56,6 @@ public class MultiChoice {
         }
         i.add(ar.getSalary());
         boolean bl = false;
-        //if(new BigDecimal(700).compareTo(i)>0)
         if(squad1.avarageSalaryWithTransfer(i,1).compareTo(squad1.avarageSalary())>0
                 && squad2.avarageSalaryWithTransfer(i.negate(),1).compareTo(squad2.avarageSalary())>0)
         {bl = true;}
@@ -72,28 +71,23 @@ public class MultiChoice {
             Employee[] ir = new Employee[uss.length+1];
             String[] ans = new String[uss.length+1];
             for(int i=0; i<uss.length; i++){
-
                 ir[i]=uss[i];
                 ans[i]=uss[i].getName();
                 salary= salary.add(uss[i].getSalary());
-         //       System.out.println("___" + salary + " salary + getsalary" + uss[i].getSalary());
             }
 
             ir[uss.length]=s3;
             ans[uss.length]=s3.getName();
             salary= salary.add(s3.getSalary());
-           // System.out.println("___" + salary + " salary + getsalary s3" + s3.getSalary());
             if(provEquals(ir))
             {
                 if(provChislo(ir, s3)) {
                     if(ls.size()>=ir.length) {
                         voda(ls, ir);
                         Arrays.sort(ans);
-                        map.putIfAbsent(Arrays.toString(ans), "Средняя зарплата в I отделе стала " + squad2.avarageSalaryWithTransfer(salary,ir.length)
+                        map.putIfAbsent("\n" + Arrays.toString(ans), "Средняя зарплата в I отделе стала " + squad2.avarageSalaryWithTransfer(salary,ir.length)
                                 + ", во втором " + squad1.avarageSalaryWithTransfer(salary.negate(),ir.length));
-                        // System.out.println();
                     }
-                    //System.out.println(ans);
                 }
             }
         }

@@ -84,7 +84,7 @@ public class ConsoleMain {
                             }
                         }
                         MultiChoice mch = new MultiChoice();
-                        mch.map_creation(listGoodEmployee, squad2, squad1);
+                        fileWrite.writeAnswer("\nДополнитльные варианты переводов: \n"+mch.map_creation(listGoodEmployee, squad2, squad1).entrySet().toString());
                         listGoodEmployee.clear();
                     }
                 }

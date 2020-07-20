@@ -66,17 +66,11 @@ public class Squad {
         salary=salary.subtract(sal); //Вычитаем из суммарной зп зп переводящегося сотрудника (или складываем. Может придти отрицательное число для рассчетов)
 
         if(sal.compareTo(BigDecimal.ZERO)>0) {//В зависимости от знака sal - открепляем или прикрепляем сотрудника к отделу.
-         //   System.out.println("Произошло деление с параметрами sal ="+sal +" num "+num);
-         //   System.out.println("Было "+ salary);
             salary = salary.divide(new BigDecimal(listEmpl.size() - num), CHARS_AFTER_POINT, 3);
-          //  System.out.println("Стало "+ salary);
         }
 
         if(sal.compareTo(BigDecimal.ZERO)<0) {
-           // System.out.println("Произошло деление с параметрами sal ="+sal +" num "+num);
-           // System.out.println("Было "+ salary);
             salary = salary.divide(new BigDecimal(listEmpl.size() + num), CHARS_AFTER_POINT, 3);
-           // System.out.println("Стало "+ salary);
         }
 
         return salary;
