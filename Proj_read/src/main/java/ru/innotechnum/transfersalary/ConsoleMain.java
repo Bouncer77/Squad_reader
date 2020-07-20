@@ -18,7 +18,6 @@ public class ConsoleMain {
             FileRead reader = null;
             String path = null;
             boolean rewrite = false;
-
             //Исправил плохой момент с try-cathe и оставил switch
             switch (args.length) {
                 case 3:
@@ -38,8 +37,6 @@ public class ConsoleMain {
             }
 
             Map<String,Squad> hashMapSquads = reader.reading();
-        MultiChoice mc = new MultiChoice();
-        mc.map_creation();
             /*
                 Если возвращает пустой map, то в ридере что-то пошло не так.
                 Значит завершаем работу метода.
@@ -67,6 +64,7 @@ public class ConsoleMain {
             Решил не использовать StringBuilder, А написал ниже answer= ""+""+""...
             Из за того, что String перегружен, то все ок и работать будет быстрее чем в билдере.
         * */
+        List<Employee> listGoodEmployee = new ArrayList<>();
         for (Squad squadFirst : hashMapSquads.values())  //раньше использовал EntrySet()
             for (Squad squadTwo : hashMapSquads.values()) {
                 if (squadFirst!=squadTwo) {  //Проверка, чтобы лишний раз не сравнивало отдел с ним же
@@ -80,17 +78,20 @@ public class ConsoleMain {
                                  + "\n Было в 1: " + squad1.avarageSalary() + " было в 2: " + squad2.avarageSalary()
                                   + "\n Стало в 1: " +squad1.avarageSalaryWithTransfer(employ.getSalary(), 1)
                                    + " Стало в 2: " + squad2.avarageSalaryWithTransfer(employ.getSalary().negate(), 1);
-                              //  System.out.println(forms("\n answer ", employeeList, new ArrayList<>(),employ, 1)); //вызов в форе функции с фором. Мб Подать две переменные, список и задействованные элемементы + количество вариантов.
+                                listGoodEmployee.add(employ);
                                 fileWrite.writeAnswer(answer);     //Кидаем на запись в файл вариант с переводом сотрудника
                                 System.out.println(answer);
                             }
                         }
+                        MultiChoice mch = new MultiChoice();
+                        mch.map_creation(listGoodEmployee, squad2, squad1);
+                        listGoodEmployee.clear();
                     }
                 }
             }
 
     }
-    
+
 
 
 
