@@ -19,15 +19,19 @@ public class MultiChoice {
         this.squad2=squad2;
     }
 
-    public Map<String, String> mapCreation(List<Employee> listEmpl) {
+    public StringBuilder additionalResponse(List<Employee> listEmpl) { //
         for(Employee employee : listEmpl) {                     // [ Если Убрать этот код и при первом вызове multiTransfer подать вторым аргументом пустой массив
             Employee[] emplArray = new Employee[] {employee};   // [ То выведет все комбинации + одиночные переводы. Т.к одиночные переводы в основном блоке, а групповые в дополнительном - код пока оставил.
             multiTransfer(listEmpl,emplArray);                  // [ Пока не решил, стоит ли выводить информацию в разных блоках или в одном.
         }
         System.out.println("\nТакже возможны следующие варианты переводов: \n");
-        System.out.println(map.entrySet());
+        StringBuilder answer = new StringBuilder("");
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            answer.append("\n" + entry.getKey() + " " + "{" + entry.getValue()+"}");
+        }
+        System.out.println(answer);
 
-        return map;
+        return answer;
     }
 
 
@@ -75,7 +79,7 @@ public class MultiChoice {
                     if(employeeList.size()>=newArrays.length) {
                         multiTransfer(employeeList, newArrays);
                         Arrays.sort(namesEmpl);
-                        map.putIfAbsent("\n" + Arrays.toString(namesEmpl), "Средняя зарплата в I отделе возрасла до " + squad2.avarageSalaryWithTransfer(salary,newArrays.length)
+                        map.putIfAbsent("" + Arrays.toString(namesEmpl), "Средняя зарплата в I отделе возрасла до " + squad2.avarageSalaryWithTransfer(salary,newArrays.length)
                                 + ", во втором до " + squad1.avarageSalaryWithTransfer(salary.negate(),newArrays.length));
                     }
                 }
