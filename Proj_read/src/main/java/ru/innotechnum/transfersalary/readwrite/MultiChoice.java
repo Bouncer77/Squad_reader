@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MultiChoice {
-    private Map<String, String> map = new HashMap<>();  //Первый String[] - массив строк с именами сотрудников
+    private Map<String, String> map = new HashMap<>();  //Первый String - отсортированный массив имен в строке. Второй - Текст с информацией о переводе (Сколько ср.зп была в отделе и сколько стала)
     private Squad squad1;
     private Squad squad2;
 
