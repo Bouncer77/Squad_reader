@@ -40,4 +40,4 @@
 
 
  Пример вывода информации в файл: 
-![Image alt](Screens/Screenshot_460.png)
+![Image alt](Screens/Screenshot_467.png)
