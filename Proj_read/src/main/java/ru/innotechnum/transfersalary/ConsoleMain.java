@@ -77,14 +77,14 @@ public class ConsoleMain {
                                  + "\n Было в 1: " + squad1.avarageSalary() + " было в 2: " + squad2.avarageSalary()
                                   + "\n Стало в 1: " +squad1.avarageSalaryWithTransfer(employ.getSalary(), 1)
                                    + " Стало в 2: " + squad2.avarageSalaryWithTransfer(employ.getSalary().negate(), 1);
-                                listGoodEmployee.add(employ);
+                                listGoodEmployee.add(employ);      // Список тех, кто прошел "отбор" для перевода
                                 fileWrite.writeAnswer(answer);     //Кидаем на запись в файл вариант с переводом сотрудника
                                 System.out.println(answer);
                             }
                         }
                         MultiChoice mch = new MultiChoice(squad2, squad1); //дополнительные варианты перевода
-                        fileWrite.writeAnswer("\nДополнитльные варианты переводов: \n"+mch.mapCreation(listGoodEmployee).entrySet().toString());
-                        listGoodEmployee.clear();
+                        fileWrite.writeAnswer("\nДополнитльные варианты переводов: \n" + mch.mapCreation(listGoodEmployee).entrySet().toString());
+                        listGoodEmployee.clear();   //Чистим список одобренных для составления нового списка в другой отдел
                     }
                 }
             }

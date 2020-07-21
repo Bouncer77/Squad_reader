@@ -20,13 +20,9 @@ public class MultiChoice {
     }
 
     public Map<String, String> mapCreation(List<Employee> listEmpl) {
-        for(Employee employee : listEmpl) {
-            Employee[] emplArray = new Employee[] {employee};
-            if(checkSalary(emplArray, employee))
-                if(checkRepeatNumber(emplArray)) {
-                   // Arrays.sort(emplArray);
-                    multiCreate(listEmpl,emplArray);
-                }
+        for(Employee employee : listEmpl) {                     // [ Если Убрать этот код и при первом вызове multiTransfer подать вторым аргументом пустой массив
+            Employee[] emplArray = new Employee[] {employee};   // [ То выведет все комбинации + одиночные переводы. Т.к одиночные переводы в основном блоке, а групповые в дополнительном - код пока оставил.
+            multiTransfer(listEmpl,emplArray);                  // [ Пока не решил, стоит ли выводить информацию в разных блоках или в одном.
         }
         System.out.println("\nТакже возможны следующие варианты переводов: \n");
         System.out.println(map.entrySet());
@@ -35,7 +31,7 @@ public class MultiChoice {
     }
 
 
-    private Boolean checkRepeatNumber(Employee[] us) {  //Проверка, чтобы не выбирать одинаковых сотрудников
+    private Boolean checkRepeatNumber(Employee[] us) {  //Проверка, чтобы не выбирать одних и тех же сотрудников для перевода.
         Boolean as = true;
         for(int d =0; d<us.length;d++)
             for(int i =0; i<us.length;i++) {
@@ -45,7 +41,7 @@ public class MultiChoice {
     }
 
 
-    private Boolean checkSalary(Employee[] emplArr, Employee employee) {
+    private Boolean checkSalary(Employee[] emplArr, Employee employee) {  //Проверка на возрастание средней зарплаты в обоих отделах при переводе группы сотрудников.
         BigDecimal i=new BigDecimal(0);
         for(Employee rr: emplArr) {
             i.add(rr.getSalary());
@@ -60,7 +56,7 @@ public class MultiChoice {
         return bl;
     }
 
-    private void multiCreate(List<Employee> employeeList, Employee[] emplArray) {
+    private void multiTransfer(List<Employee> employeeList, Employee[] emplArray) {
         for(Employee s3 :employeeList) {
             BigDecimal salary= BigDecimal.valueOf(0);  //Сумма переводящихся
             Employee[] newArrays = new Employee[emplArray.length+1];  //newArrays = Выбранная для перевода пачка сотрудников
@@ -77,7 +73,7 @@ public class MultiChoice {
             if(checkRepeatNumber(newArrays)) {
                 if(checkSalary(newArrays, s3)) {
                     if(employeeList.size()>=newArrays.length) {
-                        multiCreate(employeeList, newArrays);
+                        multiTransfer(employeeList, newArrays);
                         Arrays.sort(namesEmpl);
                         map.putIfAbsent("\n" + Arrays.toString(namesEmpl), "Средняя зарплата в I отделе возрасла до " + squad2.avarageSalaryWithTransfer(salary,newArrays.length)
                                 + ", во втором до " + squad1.avarageSalaryWithTransfer(salary.negate(),newArrays.length));
