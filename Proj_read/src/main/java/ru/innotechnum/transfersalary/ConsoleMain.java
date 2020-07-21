@@ -83,7 +83,7 @@ public class ConsoleMain {
                             }
                         }
                         MultiChoice mch = new MultiChoice(squad2, squad1); //дополнительные варианты перевода
-                        fileWrite.writeAnswer("\nДополнитльные варианты переводов: \n" + mch.additionalResponse(listGoodEmployee));
+                        fileWrite.writeAnswer("" + mch.additionalResponse(listGoodEmployee));
                         listGoodEmployee.clear();   //Чистим список одобренных для составления нового списка в другой отдел
                     }
                 }

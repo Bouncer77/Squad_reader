@@ -24,13 +24,15 @@ public class MultiChoice {
             Employee[] emplArray = new Employee[] {employee};   // [ То выведет все комбинации + одиночные переводы. Т.к одиночные переводы в основном блоке, а групповые в дополнительном - код пока оставил.
             multiTransfer(listEmpl,emplArray);                  // [ Пока не решил, стоит ли выводить информацию в разных блоках или в одном.
         }
-        System.out.println("\nТакже возможны следующие варианты переводов: \n");
-        StringBuilder answer = new StringBuilder("");
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            answer.append("\n" + entry.getKey() + " " + "{" + entry.getValue()+"}");
+        StringBuilder answer = new StringBuilder("\nДополнитльные варианты переводов: \n");
+        if(!map.isEmpty()) {
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                answer.append("\n" + entry.getKey() + " " + "{" + entry.getValue() + "}");
+            }
+        } else {
+            answer.append("\n Отсутствуют ");
         }
         System.out.println(answer);
-
         return answer;
     }
 
