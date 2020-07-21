@@ -1,6 +1,7 @@
 package ru.innotechnum.transfersalary.department;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class Squad {
          setName(name);
      }
 
-    private BigDecimal sumSalary() { //Подсчитывает суммарную зп одного отдела в BigDecimal. Экономия места, дублирующийся код.
+    public BigDecimal sumSalary() { //Подсчитывает суммарную зп одного отдела в BigDecimal. Экономия места, дублирующийся код.
         BigDecimal salary = new BigDecimal(0);
         for(int i = 0; i< listEmpl.size(); i++) {
             salary = salary.add(listEmpl.get(i).getSalary());
@@ -56,7 +57,7 @@ public class Squad {
     //Подсчет средней зп по отделу
     public BigDecimal avarageSalary() {
         BigDecimal salary = sumSalary(); //Подсчет суммарной зп всех работников в отделе
-        salary = salary.divide(new BigDecimal(listEmpl.size()),CHARS_AFTER_POINT,3);
+        salary = salary.divide(new BigDecimal(listEmpl.size()),CHARS_AFTER_POINT,RoundingMode.HALF_UP);
         return salary;
     }
 
@@ -67,11 +68,11 @@ public class Squad {
         salary=salary.subtract(sal); //Вычитаем из суммарной зп зп переводящегося сотрудника (или складываем. Может придти отрицательное число для рассчетов)
 
         if(sal.compareTo(BigDecimal.ZERO)>0) {//В зависимости от знака sal - открепляем или прикрепляем сотрудника к отделу.
-            salary = salary.divide(new BigDecimal(listEmpl.size() - num), CHARS_AFTER_POINT, 3);
+            salary = salary.divide(new BigDecimal(listEmpl.size() - num), CHARS_AFTER_POINT, RoundingMode.HALF_UP);
         }
 
         if(sal.compareTo(BigDecimal.ZERO)<0) {
-            salary = salary.divide(new BigDecimal(listEmpl.size() + num), CHARS_AFTER_POINT, 3);
+            salary = salary.divide(new BigDecimal(listEmpl.size() + num), CHARS_AFTER_POINT, RoundingMode.HALF_UP);
         }
 
         return salary;

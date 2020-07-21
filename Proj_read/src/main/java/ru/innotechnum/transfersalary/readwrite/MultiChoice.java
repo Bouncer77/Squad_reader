@@ -4,10 +4,7 @@ import ru.innotechnum.transfersalary.department.Employee;
 import ru.innotechnum.transfersalary.department.Squad;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MultiChoice {
     private Map<String, String> map = new HashMap<>();  //Первый String - отсортированный массив имен в строке. Второй - Текст с информацией о переводе (Сколько ср.зп была в отделе и сколько стала)
@@ -36,26 +33,25 @@ public class MultiChoice {
         return answer;
     }
 
-
     private Boolean checkRepeatNumber(Employee[] us) {  //Проверка, чтобы не выбирать одних и тех же сотрудников для перевода.
         Boolean as = true;
         for(int d =0; d<us.length;d++)
             for(int i =0; i<us.length;i++) {
-                if(us[d].getName().equals(us[i].getName()) && d!=i) {as = false; }
+                if(us[d].getName().equals(us[i].getName()) && d!=i) {as = false;}
             }
         return as;
     }
 
 
-    private Boolean checkSalary(Employee[] emplArr, Employee employee) {  //Проверка на возрастание средней зарплаты в обоих отделах при переводе группы сотрудников.
+    private Boolean checkSalary(Employee[] emplArr, Employee employee) {  //Проверка на возрастание средней зарплаты в обоих отделах при переводе группы сотрудников. employee устарела. Она уже есть в emplArr
         BigDecimal i=new BigDecimal(0);
         for(Employee rr: emplArr) {
-            i.add(rr.getSalary());
+            i = i.add(rr.getSalary());
         }
-        i.add(employee.getSalary());
         boolean bl = false;
-        if(squad1.avarageSalaryWithTransfer(i,emplArr.length).compareTo(squad1.avarageSalary())>0
-                && squad2.avarageSalaryWithTransfer(i.negate(),emplArr.length).compareTo(squad2.avarageSalary())>0) {
+        if(squad2.getListEmpl().size()>emplArr.length)
+        if(squad2.avarageSalaryWithTransfer(i,emplArr.length).compareTo(squad2.avarageSalary())>0
+                && squad1.avarageSalaryWithTransfer(i.negate(),emplArr.length).compareTo(squad1.avarageSalary())>0) {
         bl = true;
         } else {
         bl = false; }
@@ -76,6 +72,7 @@ public class MultiChoice {
             newArrays[emplArray.length]=s3;
             namesEmpl[emplArray.length]=s3.getName();
             salary= salary.add(s3.getSalary());
+
             if(checkRepeatNumber(newArrays)) {
                 if(checkSalary(newArrays, s3)) {
                     if(employeeList.size()>=newArrays.length) {

@@ -77,10 +77,10 @@ public class ConsoleMain {
                                  + "\n Было в 1: " + squad1.avarageSalary() + " было в 2: " + squad2.avarageSalary()
                                   + "\n Стало в 1: " +squad1.avarageSalaryWithTransfer(employ.getSalary(), 1)
                                    + " Стало в 2: " + squad2.avarageSalaryWithTransfer(employ.getSalary().negate(), 1);
-                                listGoodEmployee.add(employ);      // Список тех, кто прошел "отбор" для перевода
+
                                 fileWrite.writeAnswer(answer);     //Кидаем на запись в файл вариант с переводом сотрудника
                                 System.out.println(answer);
-                            }
+                            }listGoodEmployee.add(employ);      // Список тех, кто прошел "отбор" для перевода
                         }
                         MultiChoice mch = new MultiChoice(squad2, squad1); //дополнительные варианты перевода
                         fileWrite.writeAnswer("" + mch.additionalResponse(listGoodEmployee));
