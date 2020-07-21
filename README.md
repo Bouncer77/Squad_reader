@@ -8,7 +8,7 @@
 
 Файл для ознакомления со списком сотрудников: [squads.txt](https://github.com/samurayrus/Squad_reader/blob/Rabotnik_OBJ/Proj_read/squads.txt)
 
-Файл для ознакомления с результатом работы программы: [SquadTransfer.txt](https://github.com/samurayrus/Squad_reader/blob/Rabotnik_OBJ/Proj_read/SquadTransfer.txt)
+Файл для ознакомления с результатом работы программы: [SquadTransfer.txt](https://github.com/samurayrus/Squad_reader/blob/Rabotnik_OBJ/Screens/answerW.txt)
 ### Пример работы аргументов:
  - Можно на вход подать три аргумента. Первый - путь до файла с сотрудниками, второй до файла с результатами, третий true/false или пустой ( отвечает за перезапись файла или запись новых результатов в конец).
 
