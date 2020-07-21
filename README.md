@@ -38,3 +38,6 @@
  
  ![Image alt](Screens/screen3.png)
 
+
+ Пример вывода информации в файл: 
+![Image alt](Screens/Screenshot_460.png)
