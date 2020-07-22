@@ -22,7 +22,7 @@ public class FileRead {
            System.out.println("Строка состоит не из трех частей, а из " + mas.length);
            return false;
        }
-       if (mas[0].length()<2 || !mas[0].matches("[a-zA-Z ]+")) {
+       if (mas[0].length()<2 || !mas[0].matches("[a-zA-Z ]+") || mas[2].split("\\s").length==0) {
            System.out.println("Некорректное имя. Разрешены только буквы и пробелы");
            return false;
        }

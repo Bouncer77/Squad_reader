@@ -63,7 +63,6 @@ public class ConsoleMain {
             Решил не использовать StringBuilder, А написал ниже answer= ""+""+""...
             Из за того, что String перегружен, то все ок и работать будет быстрее чем в билдере.
         * */
-        List<Employee> listGoodEmployee = new ArrayList<>();
         for (Squad squadFirst : hashMapSquads.values())  //раньше использовал EntrySet()
             for (Squad squadTwo : hashMapSquads.values()) {
                 if (squadFirst!=squadTwo) {  //Проверка, чтобы лишний раз не сравнивало отдел с ним же
@@ -77,14 +76,12 @@ public class ConsoleMain {
                                  + "\n Было в 1: " + squad1.avarageSalary() + " было в 2: " + squad2.avarageSalary()
                                   + "\n Стало в 1: " +squad1.avarageSalaryWithTransfer(employ.getSalary(), 1)
                                    + " Стало в 2: " + squad2.avarageSalaryWithTransfer(employ.getSalary().negate(), 1);
-
                                 fileWrite.writeAnswer(answer);     //Кидаем на запись в файл вариант с переводом сотрудника
                                 System.out.println(answer);
-                            }listGoodEmployee.add(employ);      // Список тех, кто прошел "отбор" для перевода
+                            }
                         }
                         MultiChoice mch = new MultiChoice(squad2, squad1); //дополнительные варианты перевода
-                        fileWrite.writeAnswer("" + mch.additionalResponse(listGoodEmployee));
-                        listGoodEmployee.clear();   //Чистим список одобренных для составления нового списка в другой отдел
+                        fileWrite.writeAnswer(mch.additionalResponse(squad1.getListEmpl()).toString());
                     }
                 }
             }
