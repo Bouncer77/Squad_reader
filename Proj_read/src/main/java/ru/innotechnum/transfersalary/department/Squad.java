@@ -9,6 +9,7 @@ public class Squad {
     static final int CHARS_AFTER_POINT = 6;  //Кол-во знаков после запятой для расчетов. 6 написал от балды
     private List<Employee> listEmpl = new ArrayList<Employee>(); //Данные отдела (ФИО/ЗП)
     private String name = null; //Название отдела
+    private BigDecimal avarageSalary; //Часто повторяется вызов функции с одним и тем же рузультатом. Вынес в переменную
 
      public Squad() {
      }
@@ -41,6 +42,13 @@ public class Squad {
         return name;
     }
 
+    public BigDecimal getAvarageSalary() {
+         if(avarageSalary!=null) {
+             return avarageSalary();
+         } else {
+             return avarageSalary;
+         }
+    }
     //Выводит в консоль данные об отделе, сотрудниках и ср. зарплате
     public void display() {
         StringBuilder answer = new StringBuilder("\nDisplay ->" + name + ": \n");
@@ -58,6 +66,7 @@ public class Squad {
     public BigDecimal avarageSalary() {
         BigDecimal salary = sumSalary(); //Подсчет суммарной зп всех работников в отделе
         salary = salary.divide(new BigDecimal(listEmpl.size()),CHARS_AFTER_POINT,RoundingMode.HALF_UP);
+        avarageSalary= salary;
         return salary;
     }
 

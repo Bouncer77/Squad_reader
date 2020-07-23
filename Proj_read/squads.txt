@@ -1,20 +1,22 @@
-NotSure/300.00/Tech
-dasd/23/
-NotYes/305.00/Tech
-Ivan /500.50/Tech
-Francisc II /33ф3.00/Already
-Maxim /777.1902348910/Tech
-Albert /222.00/Already
-Alb2ert /32323.00/Already
-VVV /171.00/Tech
-AAAA /332.00/Already
-bbb /222.00/Baby
-bbbdas /2da22.00/Baby
-ccc /123.00/Baby
-dddd /232.00.00/Baby
-dddasdasdd /232.00/Baby/dasdasd/asdasdas/123
-abc/888.00/Tester
-ab cc/1333.00/Tester
-abdsa/1000.00/Tester
-abdda/1000.00/Tester
-ab bcc/765.00/Tester
+AA/1000.00/DepA
+AB/1000.00/DepA
+AC/1000.00/DepA
+AD/1000.00/DepA
+AE/1000.00/DepA
+AF/1000.00/DepA
+AG/1000.00/DepA
+CA/1000.00/DepA
+CB/1000.00/DepA
+CC/1000/DepA
+CX/1000.00/DepA
+CV/1000.00/DepA
+QB/1200000.00/DepA
+QW/12000000.00/DepA
+
+BA/10.00/DepB
+BB/20.00/DepB
+BC/30.00/DepB
+BD/40.00/DepB
+BE/50.00/DepB
+BF/60.00/DepB
+BG/70.00/DepB

@@ -27,9 +27,11 @@ public class FileRead {
            return false;
        }
        try {
-           int numberAfterPoint = mas[1].split("\\.")[1].length();  //считаем знаки после запятой
-           if (numberAfterPoint!=2)
-               throw new NumberFormatException("Должно быть два знака после запятой. [X.xx], а в строке " + numberAfterPoint);
+           if(mas[1].split("\\.").length>1) {
+               int numberAfterPoint = mas[1].split("\\.")[1].length();  //считаем знаки после запятой
+               if (numberAfterPoint != 2)
+                   throw new NumberFormatException("Должно быть два знака после запятой. [X.xx], а в строке " + numberAfterPoint);
+           }
            BigDecimal sal = new BigDecimal(mas[1]);
        } catch (NumberFormatException numEx){
            System.out.println("Некорректное число.\n" + numEx.getMessage());
