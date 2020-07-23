@@ -18,16 +18,16 @@ public class FileRead {
     }
 
    private Boolean parsingString(String[] mas) { //Проверки на входные данные
-       if (mas.length!=3) {
+       if (mas.length != 3) {
            System.out.println("Строка состоит не из трех частей, а из " + mas.length);
            return false;
        }
-       if (mas[0].length()<2 || !mas[0].matches("[a-zA-Z ]+") || mas[2].split("\\s").length==0) {
+       if (mas[0].length() < 2 || !mas[0].matches("[a-zA-Z ]+") || mas[2].split("\\s").length == 0) {
            System.out.println("Некорректное имя. Разрешены только буквы и пробелы");
            return false;
        }
        try {
-           if(mas[1].split("\\.").length>1) {
+           if (mas[1].split("\\.").length > 1) {
                int numberAfterPoint = mas[1].split("\\.")[1].length();  //считаем знаки после запятой
                if (numberAfterPoint != 2)
                    throw new NumberFormatException("Должно быть два знака после запятой. [X.xx], а в строке " + numberAfterPoint);
@@ -44,16 +44,16 @@ public class FileRead {
        String line; //Считываемая строка
        Map<String,Squad> hashMapSquads = new HashMap<String, Squad>(); //Возвращаемый
 
-       try(FileReader fileReader = new FileReader(path);
+       try (FileReader fileReader = new FileReader(path);
            BufferedReader bufferedReader = new BufferedReader(fileReader)) { //try с ресурсами. Не нужно следить за закрытием подключения
            line = bufferedReader.readLine();
-           int numberLine=0;     //Счетчик прочитанных строк
+           int numberLine = 0;     //Счетчик прочитанных строк
            while (line != null) {     //Пока строка есть - читаем
                numberLine++;     //Считаем строки для обозначения ошибочной строки.
                String[] mas;
                mas = line.split("/");    // имя/доход/отдел
 
-               if(!parsingString(mas)) { // Проверка входных параметров. Если не прошел, пропускаем цикл
+               if (!parsingString(mas)) { // Проверка входных параметров. Если не прошел, пропускаем цикл
                    System.out.println("Некорректная запись в строке " +numberLine+"\n"+line);
                    line = bufferedReader.readLine(); //След строка
                    continue;
@@ -61,20 +61,6 @@ public class FileRead {
                    hashMapSquads.putIfAbsent(mas[2], new Squad(mas[2])); //Если такого нет, то создаем
                    hashMapSquads.get(mas[2]).addEmpl(new Employee(mas[0],mas[1])); //Кладем в него сотрудника
                }
-
-           /* Было раньше - старый код (удалить, для сравнения)
-           Employee rab = new Employee();   //Создаем нового работника
-           rab.setName(mas[0]);             //Записываем имя
-           rab.setSalary(new BigDecimal(mas[1]));   //записываем доход.
-
-           if (hashMapSquads.containsKey(mas[2])) {  //Ищем отдел с таким именем и если находим, добавляем сотрудника в него
-               hashMapSquads.get(mas[2]).addEmpl(rab);
-           } else {                                  //Если нет, то создаем новый отдел и добавляем сотрудника
-               Squad squad = new Squad();
-               squad.setName(mas[2]);
-               squad.addEmpl(rab);
-               hashMapSquads.put(mas[2],squad);
-           }*/
 
                System.out.println(line);    //вывод прочитанной строки
                line = bufferedReader.readLine(); //След строка

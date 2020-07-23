@@ -36,23 +36,22 @@ public class MultiChoice {
         return answer;
     }
 
-    private Boolean checkRepeatNumber(Employee[] us) {  //Проверка, чтобы не выбирать одних и тех же сотрудников для перевода.
-        for(int d =0; d<us.length;d++)
-            for(int i =0; i<us.length;i++) {
-                if(us[d].getName().equals(us[i].getName()) && d!=i) {return false;}
+    private Boolean checkRepeatNumber(Employee[] employees) {  //Проверка, чтобы не выбирать одних и тех же сотрудников для перевода.
+        for(int d =0; d<employees.length;d++)
+            for(int i =0; i<employees.length;i++) {
+                if(employees[d].getName().equals(employees[i].getName()) && d!=i) {return false;}
             }
         return true;
     }
-
 
     private Boolean checkSalary(Employee[] emplArr) {  //Проверка на возрастание средней зарплаты в обоих отделах при переводе группы сотрудников.
         BigDecimal i=new BigDecimal(0);
         for(Employee rr: emplArr) {
             i = i.add(rr.getSalary());
         }
-        return (squad2.getListEmpl().size()>emplArr.length) &&
-        (squad2.avarageSalaryWithTransfer(i,emplArr.length).compareTo(squad2.getAvarageSalary())>0
-                && squad1.avarageSalaryWithTransfer(i.negate(),emplArr.length).compareTo(squad1.getAvarageSalary())>0);
+        return (squad2.getListEmpl().size()>emplArr.length)
+                && (squad2.avarageSalaryWithTransfer(i,emplArr.length).compareTo(squad2.getAvarageSalary())>0
+                    && squad1.avarageSalaryWithTransfer(i.negate(),emplArr.length).compareTo(squad1.getAvarageSalary())>0);
     }
 
     private void multiTransfer(List<Employee> employeeList, Employee[] emplArray) {

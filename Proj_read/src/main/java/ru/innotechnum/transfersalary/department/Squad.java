@@ -76,11 +76,11 @@ public class Squad {
         BigDecimal salary = sumSalary(); //Подсчет суммарной зп всех работников в отделе
         salary=salary.subtract(sal); //Вычитаем из суммарной зп зп переводящегося сотрудника (или складываем. Может придти отрицательное число для рассчетов)
 
-        if(sal.compareTo(BigDecimal.ZERO)>0) {//В зависимости от знака sal - открепляем или прикрепляем сотрудника к отделу.
+        if (sal.compareTo(BigDecimal.ZERO) > 0) {//В зависимости от знака sal - открепляем или прикрепляем сотрудника к отделу.
             salary = salary.divide(new BigDecimal(listEmpl.size() - num), CHARS_AFTER_POINT, RoundingMode.HALF_UP);
         }
 
-        if(sal.compareTo(BigDecimal.ZERO)<0) {
+        if (sal.compareTo(BigDecimal.ZERO) < 0) {
             salary = salary.divide(new BigDecimal(listEmpl.size() + num), CHARS_AFTER_POINT, RoundingMode.HALF_UP);
         }
 
