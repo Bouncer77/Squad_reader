@@ -2,7 +2,6 @@ package ru.innotechnum.transfersalary.readwrite;
 
 import ru.innotechnum.transfersalary.department.Employee;
 import ru.innotechnum.transfersalary.department.Squad;
-
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -23,9 +22,9 @@ public class MultiChoice {
             multiTransfer(listEmpl, emplArray);                  // [ Пока не решил, стоит ли выводить информацию в разных блоках или в одном.
         }
         StringBuilder answer = new StringBuilder("\nДополнитльные варианты переводов: \n");
-        if(!map.isEmpty()) {
+        if (!map.isEmpty()) {
             for (Map.Entry<String, String> entry : map.entrySet()) {
-                answer.append("\n" + entry.getKey() + " " + "{" + entry.getValue() + "}");
+                answer.append("\n" + entry.getKey() + " {" + entry.getValue() + "}");
             }
         } else {
             answer.append("\n Отсутствуют ");
@@ -37,21 +36,23 @@ public class MultiChoice {
     }
 
     private Boolean checkRepeatNumber(Employee[] employees) {  //Проверка, чтобы не выбирать одних и тех же сотрудников для перевода.
-        for(int d =0; d<employees.length;d++)
-            for(int i =0; i<employees.length;i++) {
-                if(employees[d].getName().equals(employees[i].getName()) && d!=i) {return false;}
+        for(int d =0; d<employees.length; d++)
+            for(int i =0; i<employees.length; i++) {
+                if(employees[d].getName().equals(employees[i].getName()) && d!=i) {
+                    return false;
+                }
             }
         return true;
     }
 
     private Boolean checkSalary(Employee[] emplArr) {  //Проверка на возрастание средней зарплаты в обоих отделах при переводе группы сотрудников.
-        BigDecimal i=new BigDecimal(0);
+        BigDecimal sum = new BigDecimal(0);
         for(Employee rr: emplArr) {
-            i = i.add(rr.getSalary());
+            sum = sum.add(rr.getSalary());
         }
-        return (squad2.getListEmpl().size()>emplArr.length)
-                && (squad2.avarageSalaryWithTransfer(i,emplArr.length).compareTo(squad2.getAvarageSalary())>0
-                    && squad1.avarageSalaryWithTransfer(i.negate(),emplArr.length).compareTo(squad1.getAvarageSalary())>0);
+        return ((squad2.getListEmpl().size()>emplArr.length)
+                && (squad2.avarageSalaryWithTransfer(sum,emplArr.length).compareTo(squad2.getAvarageSalary())>0
+                    && squad1.avarageSalaryWithTransfer(sum.negate(),emplArr.length).compareTo(squad1.getAvarageSalary())>0));
     }
 
     private void multiTransfer(List<Employee> employeeList, Employee[] emplArray) {

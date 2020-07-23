@@ -24,9 +24,11 @@ public class FileWrite {
     private void filecreator() {
         try {
             if (path == null || path.equals("-")) {  //Создает новый файл, если не был указан в аргументах (пересоздает уже созданный там)
-                file = new File("SquadTransfer.txt"); System.out.println("File [SquadTransfer.txt] was created using the default path " + file.getAbsolutePath() );
+                file = new File("SquadTransfer.txt");
+                System.out.println("File [SquadTransfer.txt] was created using the default path " + file.getAbsolutePath() );
             } else {
-                file = new File(path); System.out.println("File Path "+file.getAbsolutePath());
+                file = new File(path);
+                System.out.println("File Path " + file.getAbsolutePath());
             }
             fileWriter = new FileWriter(file, adding); //true чтобы не перезаписывать файл, а добавлять в конец.
             bufferedWriter = new BufferedWriter(fileWriter);
