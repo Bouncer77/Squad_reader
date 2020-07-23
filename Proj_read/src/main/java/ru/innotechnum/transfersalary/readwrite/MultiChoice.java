@@ -56,10 +56,10 @@ public class MultiChoice {
     }
 
     private void multiTransfer(List<Employee> employeeList, Employee[] emplArray) {
-        for(Employee s3 :employeeList) {
-            BigDecimal salary = BigDecimal.valueOf(0);  //Сумма переводящихся
-            Employee[] newArrays = new Employee[emplArray.length+1];  //newArrays = Выбранная для перевода пачка сотрудников
-            String[] namesEmpl = new String[emplArray.length+1];     //namesEmpl - список сотрудников поименно в hashmap.
+        for(Employee s3 : employeeList) {
+            BigDecimal salary = BigDecimal.valueOf( 0 );  //Сумма переводящихся
+            Employee[] newArrays = new Employee[emplArray.length + 1];  //newArrays = Выбранная для перевода пачка сотрудников
+            String[] namesEmpl = new String[emplArray.length + 1];     //namesEmpl - список сотрудников поименно в hashmap.
             for(int i=0; i < emplArray.length; i++) {
                 newArrays[i] = emplArray[i];
                 namesEmpl[i] = emplArray[i].getName();
@@ -71,10 +71,10 @@ public class MultiChoice {
             salary = salary.add(s3.getSalary());
             Arrays.sort(namesEmpl);
 
-            if(checkRepeatNumber(newArrays)) {
-                if(checkSalary(newArrays)) {
-                    if(employeeList.size() > newArrays.length) {
-                        if(!map.containsKey(Arrays.toString(namesEmpl))) {  //map.putIfAbsent -- Проблема была в ней. Нужно было проверку вынести за код, чтобы не перебирало вообще все варианты.
+            if (checkRepeatNumber(newArrays)) {
+                if (checkSalary(newArrays)) {
+                    if (employeeList.size() > newArrays.length) {
+                        if (!map.containsKey(Arrays.toString(namesEmpl))) {  //map.putIfAbsent -- Проблема была в ней. Нужно было проверку вынести за код, чтобы не перебирало вообще все варианты.
                             map.put("" + Arrays.toString(namesEmpl), "Средняя зарплата в I отделе возрасла до " + squad2.avarageSalaryWithTransfer(salary, newArrays.length)
                                     + ", во втором до " + squad1.avarageSalaryWithTransfer(salary.negate(), newArrays.length) + "Элементов: " + namesEmpl.length);
                             numberOfValues++;

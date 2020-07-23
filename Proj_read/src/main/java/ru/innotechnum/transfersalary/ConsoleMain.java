@@ -57,7 +57,7 @@ public class ConsoleMain {
     private static void calculate(Map<String,Squad> hashMapSquads, FileWrite fileWrite) {
         Squad squad1;
         Squad squad2;
-        String answer=null;
+        String answer = null;
         /*
             Формирование текста для файла/вывода.
             Решил не использовать StringBuilder, А написал ниже answer= ""+""+""...
@@ -65,13 +65,13 @@ public class ConsoleMain {
         * */
         for (Squad squadFirst : hashMapSquads.values())  //раньше использовал EntrySet()
             for (Squad squadTwo : hashMapSquads.values()) {
-                if (squadFirst!=squadTwo) {  //Проверка, чтобы лишний раз не сравнивало отдел с ним же
+                if (squadFirst != squadTwo) {  //Проверка, чтобы лишний раз не сравнивало отдел с ним же
                     squad1 = squadFirst;
                     squad2 = squadTwo;
-                    if (squad1.avarageSalary().compareTo(squad2.avarageSalary())>0) {
+                    if (squad1.avarageSalary().compareTo(squad2.avarageSalary()) > 0) {
                         List<Employee> employeeList = squad1.getListEmpl();
                         for (Employee employ : employeeList) {    //Ищем из того отдела где средняя зп больше, людей у которых зп ниже средней, но выше чем средняя зп в другом отделе.
-                            if (employ.getSalary().compareTo(squad1.avarageSalary())<0 && employ.getSalary().compareTo(squad2.avarageSalary())>0) {
+                            if (employ.getSalary().compareTo(squad1.avarageSalary()) < 0 && employ.getSalary().compareTo(squad2.avarageSalary()) > 0) {
                                 answer = "\n Перекидываем из " + squad1.getName() + " Сотрудника " + employ.getName() +" С доходом "+ employ.getSalary()+ " в отдел " + squad2.getName()
                                  + "\n Было в 1: " + squad1.avarageSalary() + " было в 2: " + squad2.avarageSalary()
                                   + "\n Стало в 1: " +squad1.avarageSalaryWithTransfer(employ.getSalary(), 1)
