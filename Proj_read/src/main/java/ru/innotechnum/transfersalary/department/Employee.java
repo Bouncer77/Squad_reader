@@ -24,7 +24,7 @@ public class Employee {
     }
 
     public void setSalary(BigDecimal salary) {
-        this.salary=salary;
+        this.salary = salary;
     }
 
     public String getName() {

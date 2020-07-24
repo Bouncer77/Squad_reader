@@ -2,6 +2,7 @@ package ru.innotechnum.transfersalary.readwrite;
 
 import ru.innotechnum.transfersalary.department.Employee;
 import ru.innotechnum.transfersalary.department.Squad;
+
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -12,13 +13,13 @@ public class MultiChoice {
     private int numberOfValues = 0;  //Количество подходящих вариантов перестановок
 
     public MultiChoice(Squad squad1, Squad squad2) {
-        this.squad1=squad1;
-        this.squad2=squad2;
+        this.squad1 = squad1;
+        this.squad2 = squad2;
     }
 
     public StringBuilder additionalResponse(List<Employee> listEmpl) { //
-        for(Employee employee : listEmpl) {                     // [ Если Убрать этот код и при первом вызове multiTransfer подать вторым аргументом пустой массив
-            Employee[] emplArray = new Employee[] {employee};   // [ То выведет все комбинации + одиночные переводы. Т.к одиночные переводы в основном блоке, а групповые в дополнительном - код пока оставил.
+        for (Employee employee : listEmpl) {                     // [ Если Убрать этот код и при первом вызове multiTransfer подать вторым аргументом пустой массив
+            Employee[] emplArray = new Employee[]{employee};   // [ То выведет все комбинации + одиночные переводы. Т.к одиночные переводы в основном блоке, а групповые в дополнительном - код пока оставил.
             multiTransfer(listEmpl, emplArray);                  // [ Пока не решил, стоит ли выводить информацию в разных блоках или в одном.
         }
         StringBuilder answer = new StringBuilder("\nДополнитльные варианты переводов: \n");
@@ -47,17 +48,17 @@ public class MultiChoice {
 
     private Boolean checkSalary(Employee[] emplArr) {  //Проверка на возрастание средней зарплаты в обоих отделах при переводе группы сотрудников.
         BigDecimal sum = new BigDecimal(0);
-        for (Employee rr: emplArr) {
+        for (Employee rr : emplArr) {
             sum = sum.add(rr.getSalary());
         }
-        return (squad2.getListEmpl().size()>emplArr.length
-                && squad2.avarageSalaryWithTransfer(sum,emplArr.length).compareTo(squad2.getAvarageSalary())>0
-                && squad1.avarageSalaryWithTransfer(sum.negate(),emplArr.length).compareTo(squad1.getAvarageSalary())>0); //Перенос строки в таком случае вроде делается так
+        return (squad2.getListEmpl().size() > emplArr.length
+                && squad2.avarageSalaryWithTransfer(sum, emplArr.length).compareTo(squad2.getAvarageSalary()) > 0
+                && squad1.avarageSalaryWithTransfer(sum.negate(), emplArr.length).compareTo(squad1.getAvarageSalary()) > 0); //Перенос строки в таком случае вроде делается так
     }
 
     private void multiTransfer(List<Employee> employeeList, Employee[] emplArray) {
         for (Employee s3 : employeeList) {
-            BigDecimal salary = BigDecimal.valueOf( 0 );  //Сумма переводящихся
+            BigDecimal salary = BigDecimal.valueOf(0);  //Сумма переводящихся
             Employee[] newArrays = new Employee[emplArray.length + 1];  //newArrays = Выбранная для перевода пачка сотрудников
             String[] namesEmpl = new String[emplArray.length + 1];     //namesEmpl - список сотрудников поименно в hashmap.
             for (int i = 0; i < emplArray.length; i++) {

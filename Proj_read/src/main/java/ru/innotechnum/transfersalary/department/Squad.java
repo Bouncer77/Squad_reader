@@ -11,12 +11,12 @@ public class Squad {
     private String name = null; //Название отдела
     private BigDecimal avarageSalary; //Часто повторяется вызов функции с одним и тем же рузультатом. Вынес в переменную
 
-     public Squad() {
-     }
+    public Squad() {
+    }
 
-     public Squad(String name) {
-         setName(name);
-     }
+    public Squad(String name) {
+        setName(name);
+    }
 
     public BigDecimal sumSalary() { //Подсчитывает суммарную зп одного отдела в BigDecimal. Экономия места, дублирующийся код.
         BigDecimal salary = new BigDecimal(0);
@@ -35,7 +35,7 @@ public class Squad {
     }
 
     public void setName(String name) {
-        this.name=name;
+        this.name = name;
     }
 
     public String getName() {
@@ -43,15 +43,15 @@ public class Squad {
     }
 
     public BigDecimal getAvarageSalary() {
-         if(avarageSalary==null) {
-             return avarageSalary();
-         } else {
-             return avarageSalary;
-         }
+        if (avarageSalary == null) {
+            return avarageSalary();
+        } else {
+            return avarageSalary;
+        }
     }
 
     public void setAverageSalary(BigDecimal avarageSalary) {
-         this.avarageSalary=avarageSalary;
+        this.avarageSalary = avarageSalary;
     }
 
     //Выводит в консоль данные об отделе, сотрудниках и ср. зарплате
@@ -64,13 +64,13 @@ public class Squad {
 
         answer.append("\nSum salary: " + sumSalary() + " ar size " + listEmpl.size() + "\nAverage salary: ");
         System.out.println(answer);
-        System.out.printf("%.2f",  avarageSalary());    //Среднний доход
+        System.out.printf("%.2f", avarageSalary());    //Среднний доход
     }
 
     //Подсчет средней зп по отделу
     public BigDecimal avarageSalary() {
         BigDecimal salary = sumSalary(); //Подсчет суммарной зп всех работников в отделе
-        salary = salary.divide(new BigDecimal(listEmpl.size()),CHARS_AFTER_POINT,RoundingMode.HALF_UP);
+        salary = salary.divide(new BigDecimal(listEmpl.size()), CHARS_AFTER_POINT, RoundingMode.HALF_UP);
         setAverageSalary(salary);
         return salary;
     }
@@ -79,7 +79,7 @@ public class Squad {
     // num - Количество переведенных сотрудников
     public BigDecimal avarageSalaryWithTransfer(BigDecimal sal, int num) {
         BigDecimal salary = sumSalary(); //Подсчет суммарной зп всех работников в отделе
-        salary=salary.subtract(sal); //Вычитаем из суммарной зп зп переводящегося сотрудника (или складываем. Может придти отрицательное число для рассчетов)
+        salary = salary.subtract(sal); //Вычитаем из суммарной зп зп переводящегося сотрудника (или складываем. Может придти отрицательное число для рассчетов)
 
         if (sal.compareTo(BigDecimal.ZERO) > 0) {//В зависимости от знака sal - открепляем или прикрепляем сотрудника к отделу.
             salary = salary.divide(new BigDecimal(listEmpl.size() - num), CHARS_AFTER_POINT, RoundingMode.HALF_UP);

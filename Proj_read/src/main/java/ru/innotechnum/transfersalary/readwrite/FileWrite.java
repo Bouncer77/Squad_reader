@@ -15,9 +15,9 @@ public class FileWrite {
     private boolean adding;
 
     public FileWrite(String path, boolean adding) {
-            this.path=path;
-            this.adding = adding;
-            filecreator();
+        this.path = path;
+        this.adding = adding;
+        filecreator();
     }
 
     //Создание файла для записи результатов или же поиск его и добавление первой строки с датой
@@ -25,7 +25,7 @@ public class FileWrite {
         try {
             if (path == null || path.equals("-")) {  //Создает новый файл, если не был указан в аргументах (пересоздает уже созданный там)
                 file = new File("SquadTransfer.txt");
-                System.out.println("File [SquadTransfer.txt] was created using the default path " + file.getAbsolutePath() );
+                System.out.println("File [SquadTransfer.txt] was created using the default path " + file.getAbsolutePath());
             } else {
                 file = new File(path);
                 System.out.println("File Path " + file.getAbsolutePath());
@@ -59,8 +59,7 @@ public class FileWrite {
 
     }
 
-    public void closer()
-    {
+    public void closer() {
         try {
             bufferedWriter.close();
             fileWriter.close();
