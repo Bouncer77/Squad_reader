@@ -76,7 +76,7 @@ public class MultiChoice {
                     if (employeeList.size() > newArrays.length) {
                         if (!map.containsKey(Arrays.toString(namesEmpl))) {  //map.putIfAbsent -- Проблема была в ней. Нужно было проверку вынести за код, чтобы не перебирало вообще все варианты.
                             map.put(Arrays.toString(namesEmpl), "Средняя зарплата в I отделе возрасла до " + squad2.avarageSalaryWithTransfer(salary, newArrays.length)
-                                    + ", во втором до " + squad1.avarageSalaryWithTransfer(salary.negate(), newArrays.length) + "Элементов: " + namesEmpl.length);
+                                    + ", во втором до " + squad1.avarageSalaryWithTransfer(salary.negate(), newArrays.length) + " | Элементов: " + namesEmpl.length);
                             numberOfValues++;
                             System.out.println("Найдено подходящих результатов: " + numberOfValues);
                             multiTransfer(employeeList, newArrays);
