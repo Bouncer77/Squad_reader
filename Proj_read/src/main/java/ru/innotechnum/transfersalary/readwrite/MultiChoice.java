@@ -9,7 +9,7 @@ public class MultiChoice {
     private Map<String, String> map = new TreeMap<>();  //Первый String - отсортированный массив имен в строке. Второй - Текст с информацией о переводе (Сколько ср.зп была в отделе и сколько стала)
     private Squad squad1;
     private Squad squad2;
-    private int numberOfValues = 0;
+    private int numberOfValues = 0;  //Количество подходящих вариантов перестановок
 
     public MultiChoice(Squad squad1, Squad squad2) {
         this.squad1=squad1;
@@ -36,9 +36,9 @@ public class MultiChoice {
     }
 
     private Boolean checkRepeatNumber(Employee[] employees) {  //Проверка, чтобы не выбирать одних и тех же сотрудников для перевода.
-        for(int d =0; d<employees.length; d++)
-            for(int i =0; i<employees.length; i++) {
-                if(employees[d].getName().equals(employees[i].getName()) && d!=i) {
+        for (int d = 0; d < employees.length; d++)
+            for (int i = 0; i < employees.length; i++) {
+                if (employees[d].getName().equals(employees[i].getName()) && d != i) {
                     return false;
                 }
             }
@@ -56,11 +56,11 @@ public class MultiChoice {
     }
 
     private void multiTransfer(List<Employee> employeeList, Employee[] emplArray) {
-        for(Employee s3 : employeeList) {
+        for (Employee s3 : employeeList) {
             BigDecimal salary = BigDecimal.valueOf( 0 );  //Сумма переводящихся
             Employee[] newArrays = new Employee[emplArray.length + 1];  //newArrays = Выбранная для перевода пачка сотрудников
             String[] namesEmpl = new String[emplArray.length + 1];     //namesEmpl - список сотрудников поименно в hashmap.
-            for(int i=0; i < emplArray.length; i++) {
+            for (int i = 0; i < emplArray.length; i++) {
                 newArrays[i] = emplArray[i];
                 namesEmpl[i] = emplArray[i].getName();
                 salary = salary.add(emplArray[i].getSalary());

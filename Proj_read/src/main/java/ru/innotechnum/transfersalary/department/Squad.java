@@ -43,11 +43,15 @@ public class Squad {
     }
 
     public BigDecimal getAvarageSalary() {
-         if(avarageSalary!=null) {
+         if(avarageSalary==null) {
              return avarageSalary();
          } else {
              return avarageSalary;
          }
+    }
+
+    public void setAverageSalary(BigDecimal avarageSalary) {
+         this.avarageSalary=avarageSalary;
     }
 
     //Выводит в консоль данные об отделе, сотрудниках и ср. зарплате
@@ -67,7 +71,7 @@ public class Squad {
     public BigDecimal avarageSalary() {
         BigDecimal salary = sumSalary(); //Подсчет суммарной зп всех работников в отделе
         salary = salary.divide(new BigDecimal(listEmpl.size()),CHARS_AFTER_POINT,RoundingMode.HALF_UP);
-        avarageSalary= salary;
+        setAverageSalary(salary);
         return salary;
     }
 
