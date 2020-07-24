@@ -20,7 +20,7 @@ public class Squad {
 
     public BigDecimal sumSalary() { //Подсчитывает суммарную зп одного отдела в BigDecimal. Экономия места, дублирующийся код.
         BigDecimal salary = new BigDecimal(0);
-        for(int i = 0; i < listEmpl.size(); i++) {
+        for (int i = 0; i < listEmpl.size(); i++) {
             salary = salary.add(listEmpl.get(i).getSalary());
         }
         return salary;
@@ -58,7 +58,7 @@ public class Squad {
     public void display() {
         StringBuilder answer = new StringBuilder("\nDisplay ->" + name + ": \n");
 
-        for (int i = 0; i< listEmpl.size(); i++) {
+        for (int i = 0; i < listEmpl.size(); i++) {
             answer.append("\nTD " + i + ":   " + listEmpl.get(i).getName() + " " + listEmpl.get(i).getSalary());
         }
 

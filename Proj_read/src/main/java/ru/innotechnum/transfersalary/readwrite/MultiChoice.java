@@ -47,12 +47,12 @@ public class MultiChoice {
 
     private Boolean checkSalary(Employee[] emplArr) {  //Проверка на возрастание средней зарплаты в обоих отделах при переводе группы сотрудников.
         BigDecimal sum = new BigDecimal(0);
-        for(Employee rr: emplArr) {
+        for (Employee rr: emplArr) {
             sum = sum.add(rr.getSalary());
         }
-        return ((squad2.getListEmpl().size()>emplArr.length)
-                && (squad2.avarageSalaryWithTransfer(sum,emplArr.length).compareTo(squad2.getAvarageSalary())>0
-                    && squad1.avarageSalaryWithTransfer(sum.negate(),emplArr.length).compareTo(squad1.getAvarageSalary())>0));
+        return (squad2.getListEmpl().size()>emplArr.length
+                && squad2.avarageSalaryWithTransfer(sum,emplArr.length).compareTo(squad2.getAvarageSalary())>0
+                && squad1.avarageSalaryWithTransfer(sum.negate(),emplArr.length).compareTo(squad1.getAvarageSalary())>0); //Перенос строки в таком случае вроде делается так
     }
 
     private void multiTransfer(List<Employee> employeeList, Employee[] emplArray) {
@@ -75,7 +75,7 @@ public class MultiChoice {
                 if (checkSalary(newArrays)) {
                     if (employeeList.size() > newArrays.length) {
                         if (!map.containsKey(Arrays.toString(namesEmpl))) {  //map.putIfAbsent -- Проблема была в ней. Нужно было проверку вынести за код, чтобы не перебирало вообще все варианты.
-                            map.put("" + Arrays.toString(namesEmpl), "Средняя зарплата в I отделе возрасла до " + squad2.avarageSalaryWithTransfer(salary, newArrays.length)
+                            map.put(Arrays.toString(namesEmpl), "Средняя зарплата в I отделе возрасла до " + squad2.avarageSalaryWithTransfer(salary, newArrays.length)
                                     + ", во втором до " + squad1.avarageSalaryWithTransfer(salary.negate(), newArrays.length) + "Элементов: " + namesEmpl.length);
                             numberOfValues++;
                             System.out.println("Найдено подходящих результатов: " + numberOfValues);
