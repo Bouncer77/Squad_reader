@@ -68,12 +68,12 @@ public class ConsoleMain {
                 if (squadFirst != squadTwo) {  //Проверка, чтобы лишний раз не сравнивало отдел с ним же
                     squad1 = squadFirst;
                     squad2 = squadTwo;
-                    if (squad1.avarageSalary().compareTo(squad2.avarageSalary()) > 0) {
+                    if (squad1.getAvarageSalary().compareTo(squad2.getAvarageSalary()) > 0) {
                         List<Employee> employeeList = squad1.getListEmpl();
                         for (Employee employ : employeeList) {    //Ищем из того отдела где средняя зп больше, людей у которых зп ниже средней, но выше чем средняя зп в другом отделе.
-                            if (employ.getSalary().compareTo(squad1.avarageSalary()) < 0 && employ.getSalary().compareTo(squad2.avarageSalary()) > 0) {
+                            if (employ.getSalary().compareTo(squad1.getAvarageSalary()) < 0 && employ.getSalary().compareTo(squad2.getAvarageSalary()) > 0) {
                                 answer = "\n Перекидываем из " + squad1.getName() + " Сотрудника " + employ.getName() +" С доходом "+ employ.getSalary()+ " в отдел " + squad2.getName()
-                                 + "\n Было в 1: " + squad1.avarageSalary() + " было в 2: " + squad2.avarageSalary()
+                                 + "\n Было в 1: " + squad1.getAvarageSalary() + " было в 2: " + squad2.getAvarageSalary()
                                   + "\n Стало в 1: " +squad1.avarageSalaryWithTransfer(employ.getSalary(), 1)
                                    + " Стало в 2: " + squad2.avarageSalaryWithTransfer(employ.getSalary().negate(), 1);
                                 fileWrite.writeAnswer(answer);     //Кидаем на запись в файл вариант с переводом сотрудника
